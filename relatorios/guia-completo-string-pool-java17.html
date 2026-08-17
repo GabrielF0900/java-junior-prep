@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Guia completo — String Pool em Java 17</title>
+  <style>
+    @page { size: A4; margin: 16mm 17mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #172033; font: 13px/1.52 Arial, sans-serif; }
+    h1,h2,h3,h4 { color: #172554; page-break-after: avoid; }
+    h1 { margin: 0; font-size: 28px; line-height: 1.15; }
+    h2 { margin: 26px 0 9px; padding-bottom: 5px; border-bottom: 2px solid #a5b4fc; font-size: 19px; }
+    h3 { margin: 18px 0 7px; font-size: 15px; }
+    h4 { margin: 13px 0 5px; font-size: 13px; }
+    p { margin: 6px 0; }
+    ul,ol { margin: 6px 0 8px 21px; padding: 0; }
+    li { margin: 3px 0; }
+    code { color: #312e81; font: 12px Consolas, monospace; }
+    pre { margin: 9px 0 12px; padding: 11px 13px; border: 1px solid #c7d2fe; border-radius: 8px; background: #eef2ff; font: 11.2px/1.48 Consolas, monospace; white-space: pre-wrap; break-inside: avoid; }
+    table { width: 100%; margin: 9px 0 13px; border-collapse: collapse; font-size: 11.5px; break-inside: avoid; }
+    th,td { padding: 7px; border: 1px solid #cbd5e1; vertical-align: top; text-align: left; }
+    th { color: #172554; background: #e0e7ff; }
+    .hero { padding: 24px; border-radius: 14px; color: white; background: linear-gradient(135deg,#1e1b4b,#4338ca 65%,#7c3aed); }
+    .hero h1,.hero p { color: white; }
+    .tag { display:inline-block; margin-bottom:10px; padding:4px 9px; border-radius:999px; background:#fbbf24; color:#422006; font-weight:bold; font-size:10px; }
+    .box { margin: 11px 0; padding: 11px 13px; border-left: 4px solid #4f46e5; background: #f8fafc; break-inside: avoid; }
+    .ok { border-left-color:#059669; background:#ecfdf5; }
+    .warn { border-left-color:#f59e0b; background:#fffbeb; }
+    .danger { border-left-color:#dc2626; background:#fef2f2; }
+    .question { border-left-color:#7c3aed; background:#f5f3ff; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+    .card { padding:10px; border:1px solid #dbeafe; border-radius:8px; break-inside:avoid; }
+    .page { page-break-before: always; }
+    .small { color:#475569; font-size:11px; }
+    .footer { margin-top:25px; padding-top:8px; border-top:1px solid #cbd5e1; color:#64748b; font-size:10px; }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <span class="tag">JAVA 17 · JAVA CORE 1.1 · MATERIAL DIDÁTICO COMPLETO</span>
+    <h1>String Pool</h1>
+    <p>Identidade, igualdade lógica, literais, <code>new String()</code>, concatenação, constantes e <code>intern()</code></p>
+    <p>Guia de estudo de Gabriel Falcão da Cruz</p>
+  </section>
+
+  <div class="box warn"><strong>Como estudar este guia:</strong> leia uma seção, feche o PDF, faça a previsão dos exemplos e só depois execute. Saber a resposta ao olhar não é o mesmo que conseguir reconstruí-la sem consulta.</div>
+
+  <h2>1. Objetivos de aprendizagem</h2>
+  <p>Ao final, você deverá conseguir:</p>
+  <ul>
+    <li>explicar o que é uma <code>String</code> e por que ela é um objeto imutável;</li>
+    <li>definir String Pool em linguagem simples;</li>
+    <li>diferenciar identidade com <code>==</code> de igualdade lógica com <code>equals()</code>;</li>
+    <li>prever comparações entre literais, objetos criados com <code>new</code>, constantes e concatenações;</li>
+    <li>explicar o comportamento de <code>intern()</code> sem tratá-lo como solução padrão;</li>
+    <li>comparar textos de forma segura, inclusive diante de <code>null</code>;</li>
+    <li>responder às armadilhas mais comuns de entrevistas Java Júnior.</li>
+  </ul>
+
+  <h2>2. Pré-requisito: objeto, referência e identidade</h2>
+  <pre>Pessoa a = new Pessoa();
+Pessoa b = new Pessoa();
+Pessoa c = a;
+
+a == b // false: objetos distintos
+a == c // true: mesma instância</pre>
+  <p>Uma variável de tipo objeto armazena uma referência administrada pela JVM. O operador <code>==</code>, quando recebe referências, verifica se os dois operandos referenciam a mesma instância — não se seus conteúdos “parecem iguais”.</p>
+  <div class="box"><strong>Modelo mental recomendado:</strong> diga “mesma instância” ou “mesmo objeto”. Evite depender da expressão “mesmo endereço físico”, pois a JVM controla a representação interna das referências.</div>
+
+  <h2>3. O que é uma String?</h2>
+  <p><code>String</code> é uma classe da API padrão (<code>java.lang.String</code>), não um tipo primitivo. Ela representa uma sequência de caracteres e possui métodos como <code>length()</code>, <code>equals()</code>, <code>substring()</code>, <code>toUpperCase()</code> e <code>isBlank()</code>.</p>
+  <pre>String nome = "Gabriel";
+int tamanho = nome.length();
+boolean mesmoConteudo = nome.equals("Gabriel");</pre>
+
+  <h3>3.1 Imutabilidade</h3>
+  <p>Uma <code>String</code> é imutável: depois que uma instância é criada, seu conteúdo não é alterado. Métodos que parecem modificar o texto retornam outra referência.</p>
+  <pre>String original = "java";
+String maiuscula = original.toUpperCase();
+
+System.out.println(original);  // java
+System.out.println(maiuscula); // JAVA</pre>
+  <p>A variável pode receber outra referência, mas isso não significa que o objeto anterior foi alterado:</p>
+  <pre>String linguagem = "Java";
+linguagem = "SQL"; // a variável passa a referenciar outra String</pre>
+
+  <h3>3.2 Por que a imutabilidade importa?</h3>
+  <div class="grid">
+    <div class="card"><strong>Compartilhamento seguro</strong><br>Literais podem ser reutilizados sem que uma parte do programa altere o texto visto por outra.</div>
+    <div class="card"><strong>Hash estável</strong><br>Uma String pode ser chave de <code>HashMap</code> sem mudar seu conteúdo depois de inserida.</div>
+    <div class="card"><strong>Segurança</strong><br>Valores usados em nomes de classes, caminhos e conexões não mudam silenciosamente dentro do mesmo objeto.</div>
+    <div class="card"><strong>Concorrência</strong><br>Objetos imutáveis são naturalmente mais simples de compartilhar entre threads.</div>
+  </div>
+
+  <h2 class="page">4. O que é o String Pool?</h2>
+  <p>O String Pool é uma área lógica administrada pela JVM para reutilizar determinadas instâncias de <code>String</code>, especialmente literais. Quando o mesmo literal aparece novamente, a JVM pode fornecer a referência da instância já existente no pool, em vez de exigir outra instância equivalente.</p>
+  <pre>String primeira = "Java";
+String segunda = "Java";
+
+System.out.println(primeira == segunda); // true</pre>
+  <p>As duas variáveis normalmente referenciam a mesma instância canônica associada ao literal <code>"Java"</code>.</p>
+  <div class="box ok"><strong>Benefício:</strong> reduzir duplicação de objetos para textos repetidos e imutáveis, economizando memória e permitindo reutilização segura.</div>
+  <div class="box danger"><strong>Conclusão que não pode ser tirada:</strong> “Se <code>==</code> funcionou para uma String, posso usá-lo para comparar textos.” O resultado ocorreu por identidade compartilhada, não porque <code>==</code> compara caracteres.</div>
+
+  <h3>4.1 Representação mental</h3>
+  <pre>primeira ─┐
+          ├──► String do pool: "Java"
+segunda ──┘</pre>
+  <p>“Pool” não altera a regra do operador: <code>==</code> continua comparando referências.</p>
+
+  <h2>5. <code>==</code> versus <code>equals()</code></h2>
+  <table>
+    <tr><th>Operação</th><th>Em String</th><th>Pergunta respondida</th></tr>
+    <tr><td><code>a == b</code></td><td>Compara referências</td><td>“É a mesma instância?”</td></tr>
+    <tr><td><code>a.equals(b)</code></td><td>Compara a sequência de caracteres</td><td>“O conteúdo textual é igual?”</td></tr>
+  </table>
+  <pre>String literal = "Java";
+String objeto = new String("Java");
+
+System.out.println(literal == objeto);      // false
+System.out.println(literal.equals(objeto)); // true</pre>
+  <p><code>new String("Java")</code> solicita uma nova instância. Ela possui os mesmos caracteres do literal, mas identidade diferente.</p>
+  <pre>literal ─────────► String do pool: "Java"
+objeto  ─────────► nova String:    "Java"</pre>
+  <div class="box"><strong>Regra prática:</strong> para comparar conteúdo textual, use <code>equals()</code>. Use <code>==</code> apenas quando a pergunta for deliberadamente sobre identidade ou quando comparar uma referência com <code>null</code>.</div>
+
+  <h2>6. Literal versus <code>new String()</code></h2>
+  <h3>6.1 Dois literais</h3>
+  <pre>String a = "Java";
+String b = "Java";
+
+a == b      // true
+a.equals(b) // true</pre>
+  <h3>6.2 Literal e construção explícita</h3>
+  <pre>String a = "Java";
+String b = new String("Java");
+
+a == b      // false
+a.equals(b) // true</pre>
+  <h3>6.3 Duas construções explícitas</h3>
+  <pre>String a = new String("Java");
+String b = new String("Java");
+
+a == b      // false
+a.equals(b) // true</pre>
+  <div class="box warn"><strong>Uso cotidiano:</strong> quase nunca há motivo para escrever <code>new String("texto")</code>. O literal é mais simples e permite reutilização. A construção explícita é útil principalmente para estudar identidade ou em APIs muito específicas.</div>
+
+  <h2 class="page">7. Concatenação: tempo de compilação e execução</h2>
+  <p>Esta é uma das partes mais cobradas porque expressões visualmente parecidas podem produzir identidades diferentes.</p>
+
+  <h3>7.1 Constantes literais conhecidas na compilação</h3>
+  <pre>String a = "Java 17";
+String b = "Java " + "17";
+
+System.out.println(a == b); // true</pre>
+  <p>O compilador pode transformar <code>"Java " + "17"</code> no literal único <code>"Java 17"</code>. Isso é chamado de constant folding.</p>
+
+  <h3>7.2 Concatenação com variável em tempo de execução</h3>
+  <pre>String versao = "17";
+String a = "Java 17";
+String b = "Java " + versao;
+
+System.out.println(a == b);      // normalmente false
+System.out.println(a.equals(b)); // true</pre>
+  <p>Como a concatenação depende de uma variável, o valor é produzido em tempo de execução. A identidade não deve ser presumida como a do literal do pool.</p>
+
+  <h3>7.3 Constante de compilação com <code>final</code></h3>
+  <pre>final String versao = "17";
+String a = "Java 17";
+String b = "Java " + versao;
+
+System.out.println(a == b); // true</pre>
+  <p>Uma variável <code>final</code> de tipo <code>String</code>, inicializada diretamente com expressão constante, pode participar de uma constante de compilação.</p>
+  <div class="box warn"><strong>Cuidado:</strong> <code>final</code> sozinho não garante isso. O valor precisa ser uma constante de compilação.</div>
+  <pre>final String versao = obterVersao();
+String b = "Java " + versao; // calculado em execução</pre>
+
+  <h3>7.4 Quadro de previsão</h3>
+  <table>
+    <tr><th>Expressão</th><th>Conteúdo igual?</th><th>Mesma identidade esperada?</th></tr>
+    <tr><td><code>"Ja" + "va"</code> versus <code>"Java"</code></td><td>Sim</td><td>Sim, expressão constante</td></tr>
+    <tr><td><code>prefixo + "va"</code> versus <code>"Java"</code></td><td>Sim, se prefixo for “Ja”</td><td>Não deve ser presumida</td></tr>
+    <tr><td><code>final String p = "Ja"; p + "va"</code></td><td>Sim</td><td>Sim, se <code>p</code> for constante de compilação</td></tr>
+  </table>
+
+  <h2>8. O método <code>intern()</code></h2>
+  <p><code>intern()</code> retorna uma representação canônica da String no pool. Se já houver uma String equivalente no pool, retorna a referência dela; caso contrário, garante uma representação canônica para o conteúdo.</p>
+  <pre>String literal = "Java";
+String criada = new String("Java");
+String internada = criada.intern();
+
+literal == criada    // false
+literal == internada // true</pre>
+  <h3>Quando conhecer e quando usar?</h3>
+  <ul>
+    <li><strong>Conhecer:</strong> importante para entrevistas, bibliotecas, parsers e sistemas com muitos textos repetidos.</li>
+    <li><strong>Usar deliberadamente:</strong> apenas após medir e entender o perfil de memória e desempenho.</li>
+    <li><strong>Não usar:</strong> como substituto de <code>equals()</code> ou para fazer <code>==</code> “funcionar”.</li>
+  </ul>
+  <div class="box danger"><strong>Armadilha:</strong> internar grandes volumes de dados externos e variados pode aumentar pressão de memória e custo de gerenciamento. Primeiro escolha a semântica correta; só depois avalie otimização.</div>
+
+  <h2 class="page">9. Comparações seguras e tratamento de <code>null</code></h2>
+  <h3>9.1 Risco de chamar método em referência nula</h3>
+  <pre>String entrada = null;
+entrada.equals("Java"); // NullPointerException</pre>
+  <h3>9.2 Literal conhecido à esquerda</h3>
+  <pre>"Java".equals(entrada); // false, sem exceção</pre>
+  <h3>9.3 <code>Objects.equals()</code></h3>
+  <pre>import java.util.Objects;
+
+Objects.equals(a, b);</pre>
+  <table>
+    <tr><th><code>a</code></th><th><code>b</code></th><th><code>Objects.equals(a,b)</code></th></tr>
+    <tr><td><code>null</code></td><td><code>null</code></td><td><code>true</code></td></tr>
+    <tr><td><code>null</code></td><td><code>"Java"</code></td><td><code>false</code></td></tr>
+    <tr><td><code>"Java"</code></td><td><code>"Java"</code></td><td><code>true</code></td></tr>
+    <tr><td><code>"Java"</code></td><td><code>"java"</code></td><td><code>false</code></td></tr>
+  </table>
+  <h3>9.4 Ignorar maiúsculas e minúsculas</h3>
+  <pre>"java".equalsIgnoreCase("JAVA"); // true</pre>
+  <p>Use apenas quando a regra de negócio realmente disser que caixa não importa. Senhas, tokens e certos identificadores podem ser sensíveis a maiúsculas.</p>
+
+  <h2>10. Contextos reais de uso</h2>
+  <h3>10.1 Entrada de usuário e banco de dados</h3>
+  <p>Textos vindos de teclado, HTTP, arquivos ou banco de dados não devem ter sua identidade comparada com literais.</p>
+  <pre>String statusRecebido = request.getParameter("status");
+
+if ("ATIVO".equals(statusRecebido)) {
+    // comparação pelo conteúdo e segura contra null
+}</pre>
+  <h3>10.2 Regras de negócio</h3>
+  <pre>if (Objects.equals(cliente.getDocumento(), documentoInformado)) {
+    // conteúdos iguais, inclusive com política explícita para null
+}</pre>
+  <h3>10.3 Chaves em mapas e elementos de conjuntos</h3>
+  <p><code>HashMap</code> e <code>HashSet</code> usam <code>equals()</code> e <code>hashCode()</code>, não a coincidência de referências, para determinar igualdade lógica.</p>
+  <pre>Set&lt;String&gt; linguagens = new HashSet&lt;&gt;();
+linguagens.add("Java");
+linguagens.add(new String("Java"));
+
+System.out.println(linguagens.size()); // 1</pre>
+  <p>As referências são diferentes, mas o conteúdo é igual e o contrato de <code>String</code> está corretamente implementado.</p>
+  <h3>10.4 Quando identidade pode ser intencional?</h3>
+  <p>Em código muito específico, pode ser necessário saber se duas variáveis apontam para a mesma instância. Isso é diferente de comparar texto e deve ser uma decisão explícita. Para regras de texto, identidade quase nunca é a pergunta correta.</p>
+
+  <h2>11. O que o pool não significa</h2>
+  <ul>
+    <li>Não significa que toda String de conteúdo igual será sempre o mesmo objeto.</li>
+    <li>Não transforma <code>==</code> em comparação de caracteres.</li>
+    <li>Não torna <code>new String()</code> uma boa prática cotidiana.</li>
+    <li>Não elimina a necessidade de entender <code>equals()</code>.</li>
+    <li>Não deve ser usado como justificativa para depender de identidade acidental.</li>
+  </ul>
+
+  <h2 class="page">12. Armadilhas clássicas de entrevista</h2>
+  <h3>Armadilha 1 — “<code>==</code> funciona com String”</h3>
+  <pre>String a = "Java";
+String b = "Java";
+System.out.println(a == b); // true</pre>
+  <p><strong>Resposta:</strong> funcionou porque os literais referenciam a mesma instância do pool. O operador comparou identidade, não conteúdo.</p>
+
+  <h3>Armadilha 2 — Mesmo texto com <code>new</code></h3>
+  <pre>String a = "Java";
+String b = new String("Java");
+
+a == b      // false
+a.equals(b) // true</pre>
+
+  <h3>Armadilha 3 — Concatenação aparentemente igual</h3>
+  <pre>String parte = "Ja";
+String a = "Java";
+String b = parte + "va";
+
+a == b      // false esperado
+a.equals(b) // true</pre>
+
+  <h3>Armadilha 4 — <code>null</code></h3>
+  <pre>String a = null;
+String b = null;
+
+a == b              // true
+Objects.equals(a,b) // true
+a.equals(b)         // NullPointerException</pre>
+
+  <h3>Armadilha 5 — Strings vazias</h3>
+  <pre>String vazia = "";
+
+vazia == ""      // pode ser true por identidade do literal
+vazia.equals("") // true pelo conteúdo
+vazia.isEmpty()   // true e comunica melhor a intenção</pre>
+
+  <h2>13. Desempenho e memória, sem mitos</h2>
+  <ul>
+    <li>Reutilizar literais evita instâncias equivalentes desnecessárias.</li>
+    <li><code>equals()</code> pode precisar comparar caracteres; em termos assintóticos, o pior caso é <code>O(n)</code>, sendo <code>n</code> o tamanho relevante do texto.</li>
+    <li><code>==</code> compara referências em tempo constante, mas responde a outra pergunta. Uma operação mais rápida e semanticamente errada continua errada.</li>
+    <li><code>hashCode()</code> de String deriva do conteúdo e pode ser reutilizado internamente após calculado, mas o comportamento correto nunca deve depender de detalhes não necessários da implementação.</li>
+    <li>Concatenações repetidas em laços podem criar muitos resultados intermediários; para construção incremental, considere <code>StringBuilder</code>.</li>
+  </ul>
+  <pre>StringBuilder texto = new StringBuilder();
+for (int i = 0; i &lt; 100; i++) {
+    texto.append(i).append(' ');
+}
+String resultado = texto.toString();</pre>
+  <p><code>StringBuilder</code> resolve outro problema — construção eficiente de texto — e não substitui <code>equals()</code> nem explica o pool.</p>
+
+  <h2>14. Roteiro completo do laboratório prático</h2>
+  <ol>
+    <li>Reescrever o problema com suas palavras.</li>
+    <li>Separar os cenários: literais, <code>new String()</code>, concatenação constante, concatenação em execução e <code>intern()</code>.</li>
+    <li>Anotar quantas instâncias você espera e quais referências podem ser compartilhadas.</li>
+    <li>Prever cada resultado de <code>==</code> e <code>equals()</code>.</li>
+    <li>Executar um cenário por vez.</li>
+    <li>Registrar previsão, resultado observado e explicação.</li>
+    <li>Adicionar casos com <code>null</code> e <code>Objects.equals()</code>.</li>
+    <li>Explicar por que o resultado de <code>==</code> nunca autoriza seu uso geral para comparar textos.</li>
+  </ol>
+
+  <h3>Matriz sugerida de experimentos</h3>
+  <table>
+    <tr><th>Caso</th><th>Comparações</th><th>Conceito observado</th></tr>
+    <tr><td>Dois literais iguais</td><td><code>==</code> e <code>equals()</code></td><td>Reutilização no pool</td></tr>
+    <tr><td>Literal versus <code>new</code></td><td><code>==</code> e <code>equals()</code></td><td>Identidade versus conteúdo</td></tr>
+    <tr><td>Duas Strings com <code>new</code></td><td><code>==</code> e <code>equals()</code></td><td>Instâncias distintas</td></tr>
+    <tr><td>Concatenação de literais</td><td><code>==</code></td><td>Constante de compilação</td></tr>
+    <tr><td>Concatenação com variável</td><td><code>==</code> e <code>equals()</code></td><td>Resultado produzido em execução</td></tr>
+    <tr><td><code>intern()</code></td><td><code>==</code></td><td>Representação canônica</td></tr>
+    <tr><td>Referências nulas</td><td><code>==</code>, <code>equals()</code>, <code>Objects.equals()</code></td><td>Segurança contra null</td></tr>
+  </table>
+
+  <h2 class="page">15. Active Recall — responda sem consultar</h2>
+  <ol>
+    <li>String é primitivo ou objeto?</li>
+    <li>Qual pergunta <code>==</code> responde quando recebe duas Strings?</li>
+    <li>Qual pergunta <code>equals()</code> responde?</li>
+    <li>Por que dois literais iguais podem produzir <code>true</code> com <code>==</code>?</li>
+    <li>Por que isso não torna <code>==</code> adequado para comparar texto?</li>
+    <li>O que <code>new String("Java")</code> muda em relação ao literal?</li>
+    <li>Por que <code>"Ja" + "va"</code> pode compartilhar a identidade de <code>"Java"</code>?</li>
+    <li>O que muda quando a concatenação depende de uma variável?</li>
+    <li>O que <code>intern()</code> retorna?</li>
+    <li>Como comparar duas Strings que podem ser <code>null</code>?</li>
+    <li>Qual é o pior caso de tempo de uma comparação de conteúdo?</li>
+    <li>Por que imutabilidade torna o pool seguro?</li>
+  </ol>
+
+  <h2>16. Desafio de previsão</h2>
+  <p>Antes de executar, anote <code>true</code>, <code>false</code> ou exceção para cada linha e explique o motivo.</p>
+  <pre>String a = "Java";
+String b = "Java";
+String c = new String("Java");
+String parte = "Ja";
+String d = parte + "va";
+String e = "Ja" + "va";
+String f = c.intern();
+String nula = null;
+
+System.out.println(a == b);              // ?
+System.out.println(a == c);              // ?
+System.out.println(a.equals(c));         // ?
+System.out.println(a == d);              // ?
+System.out.println(a.equals(d));         // ?
+System.out.println(a == e);              // ?
+System.out.println(a == f);              // ?
+System.out.println("Java".equals(nula)); // ?
+System.out.println(nula.equals(a));       // ?</pre>
+
+  <h2>17. Resposta Feynman esperada</h2>
+  <div class="box question">
+    Explique para alguém iniciante: “O String Pool reaproveita certas instâncias imutáveis, principalmente literais. Por isso, dois literais iguais podem apontar para a mesma instância. Mesmo assim, <code>==</code> continua verificando identidade. Para saber se dois textos possuem os mesmos caracteres, usamos <code>equals()</code>. Uma String criada com <code>new</code> pode ter o mesmo conteúdo de um literal e ainda ser outra instância.”
+  </div>
+  <p>Não memorize o parágrafo. Reescreva com suas palavras e dê um exemplo que contenha um literal e uma String criada com <code>new</code>.</p>
+
+  <h2>18. Checklist de conclusão</h2>
+  <ul>
+    <li>Consigo prever os resultados antes de executar.</li>
+    <li>Consigo explicar cada resultado sem dizer apenas “por causa do pool”.</li>
+    <li>Sei definir identidade, igualdade lógica, literal, imutabilidade e constante de compilação.</li>
+    <li>Sei comparar textos que podem ser <code>null</code>.</li>
+    <li>Consigo justificar por que <code>==</code> não deve ser usado para regras de conteúdo.</li>
+    <li>Consigo explicar o custo de <code>equals()</code> no pior caso.</li>
+    <li>Consigo responder às perguntas Feynman sem abrir este guia.</li>
+  </ul>
+
+  <h2>19. Resumo para entrevista Java Júnior</h2>
+  <div class="box ok"><strong>Resposta curta:</strong> <code>String</code> é uma classe imutável. A JVM mantém um pool para reutilizar determinadas Strings, especialmente literais. O operador <code>==</code> compara se duas referências apontam para a mesma instância, enquanto <code>equals()</code> em String compara os caracteres. Por isso, dois literais iguais podem retornar <code>true</code> com <code>==</code>, mas uma String criada com <code>new</code> pode retornar <code>false</code> contra o literal, mesmo com conteúdo igual. Para comparar texto, uso <code>equals()</code> ou <code>Objects.equals()</code> quando pode haver <code>null</code>.</div>
+
+  <div class="footer">Java Junior Prep · Java 17 · Java Core 1.1 — Igualdade e Hashing · Active Recall + Técnica de Feynman</div>
+</body>
+</html>

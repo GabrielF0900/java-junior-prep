@@ -180,22 +180,50 @@ atuais.
 
 ## Estado atual — 12/08/2026
 
-O ambiente dos exercícios está preparado e validado. Nenhum exercício foi
-implementado ainda.
+O **Exercício 01 — Igualdade de valores e de referências** foi implementado e
+executado. Gabriel concluiu a decomposição, registrou previsões e comparou o
+comportamento de `==` em valores primitivos e em referências.
+
+Gabriel apresentou corretamente a explicação Feynman principal, identificando
+dois objetos, três variáveis de referência, duas instâncias distintas e a cópia
+da referência em `c = a`. O exercício ainda não deve ser marcado como concluído:
+falta apenas Gabriel reconstruir corretamente, com suas palavras, o caso-limite
+em que duas referências são `null`. O relatório individual ainda não foi
+criado, pois depende desse último fechamento.
 
 ### Ponto exato de parada
 
-Estamos no início do **Exercício 01 — Igualdade de valores e de referências**.
+O código executável do Exercício 01 está pronto. Ele demonstra:
 
-Gabriel deve abrir `Exercicio01IgualdadeDeReferencias.java` e realizar somente
-o primeiro passo da decomposição: escrever, em comentário e com suas próprias
-palavras, como entendeu o problema.
+- dois primitivos com valores iguais, cujo resultado com `==` é `true`;
+- dois primitivos com valores diferentes, cujo resultado é `false`;
+- duas referências para instâncias distintas de `Pessoa`, cujo resultado é
+  `false`;
+- duas variáveis que referenciam a mesma instância de `Pessoa`, cujo resultado
+  é `true`.
+
+Gabriel demonstrou compreender que cada execução de `new Pessoa()` cria uma
+instância e que uma atribuição como `terceiraPessoa = primeiraPessoa` copia a
+referência, não o objeto. Também explicou corretamente por que `a == b` é
+`false` para instâncias distintas e por que `a == c` é `true` após `c = a`.
+Ainda precisa consolidar uma linguagem precisa, preferindo “mesma instância” ou
+“mesmo objeto” a “mesmo endereço de memória”.
 
 ### Próxima ação
 
-Depois dessa escrita, o assistente revisará a compreensão do problema antes de
-Gabriel começar a implementação. A revisão deverá dar apenas a menor orientação
-necessária para permitir o próximo passo.
+Na retomada, não reimplementar nem repetir toda a explicação Feynman. Pedir
+somente que Gabriel explique, com suas palavras, por que o código abaixo imprime
+`true`, distinguindo imprimir uma variável de imprimir uma expressão booleana:
+
+```java
+Pessoa a = null;
+Pessoa b = null;
+System.out.println(a == b);
+```
+
+Se a explicação estiver correta, marcar o Exercício 01 como concluído, criar o
+relatório individual em Markdown e avançar para o **Exercício 02 — String
+Pool**, ainda dentro de Java Core 1.1.
 
 ## Registro cronológico
 
@@ -213,3 +241,95 @@ necessária para permitir o próximo passo.
   ficaram sem código-base.
 - A nova estrutura compilou e os testes existentes passaram.
 - O estudo ficou preparado para começar pelo exercício 01.
+
+### 12/08/2026 — Implementação do Exercício 01
+
+#### Assuntos trabalhados
+
+- diferença do comportamento de `==` entre primitivos e referências;
+- diferença entre variável de referência e objeto;
+- criação de instâncias com `new`;
+- cópia de referência por atribuição;
+- distinção entre identidade do objeto e igualdade de conteúdo;
+- modelo didático de stack e heap e seus limites de precisão;
+- declaração de variável, instanciação, atribuição e construtor vazio;
+- previsão do resultado antes da execução.
+
+#### Arquivos criados ou modificados
+
+- `src/main/java/br/com/gabrielfalcao/prep/javacore/semana1/exercicio01igualdadedereferencias/Exercicio01IgualdadeDeReferencias.java`:
+  recebeu as previsões, os casos de primitivos e referências e as mensagens de
+  resultado;
+- `src/main/java/br/com/gabrielfalcao/prep/javacore/semana1/exercicio01igualdadedereferencias/Pessoa.java`:
+  criado como objeto simples com construtor vazio;
+- `HISTORICO_ESTUDOS.md`: atualizado neste encerramento.
+
+#### Decisões tomadas
+
+- manter `Pessoa` sem atributos, pois o objetivo atual é observar identidade de
+  objetos, não igualdade lógica;
+- usar um construtor explícito e vazio, compatível com `new Pessoa()`;
+- manter mensagens de saída detalhadas, conforme a preferência de Gabriel;
+- não usar `equals()`, em conformidade com o escopo do exercício;
+- não criar ainda o relatório individual nem marcar o exercício como concluído,
+  porque falta a explicação Feynman.
+
+#### O que Gabriel acertou
+
+- previu corretamente os quatro resultados antes da execução;
+- entendeu que `==` compara os valores dos operandos primitivos;
+- entendeu que duas execuções de `new Pessoa()` criam instâncias distintas;
+- identificou que `terceiraPessoa = primeiraPessoa` copia a referência;
+- explicou corretamente que duas variáveis podem referenciar o mesmo objeto;
+- implementou corretamente o `main`, as variáveis primitivas e a estrutura
+  básica das comparações de referência.
+
+#### Erros, dúvidas e lacunas identificadas
+
+- houve confusão inicial entre igualdade lógica, identidade e endereço de
+  memória;
+- Gabriel associou inicialmente a escolha entre `==` e `equals()` diretamente
+  a stack e heap; revisar que o tipo dos operandos e o objetivo da comparação
+  determinam o uso;
+- houve confusão entre declarar uma variável novamente e apenas atribuir uma
+  nova referência a ela;
+- houve confusão entre `Pessoa segunda = primeira` e `segunda = primeira`,
+  agravada por exemplos apresentados em contextos diferentes;
+- em uma tentativa, o conteúdo do exercício foi colocado em `Pessoa.java`, a
+  classe principal desapareceu e um `println` ficou fora de método;
+- foi criado `Pessoa(String)` quando as instanciações usavam `new Pessoa()`;
+- o construtor foi tentado dentro do método `main`; revisar que construtores são
+  declarados no corpo da própria classe;
+- ainda é necessário praticar mensagens concatenadas com espaços e nomes
+  consistentes;
+- continuar substituindo “endereço físico” por “referência administrada pela
+  JVM” ou simplesmente “mesma instância”, conforme o nível da explicação.
+
+#### Validações executadas
+
+- `mvn compile`: executado com sucesso após a organização final;
+- execução direta de `Exercicio01IgualdadeDeReferencias`: concluída com sucesso;
+- resultados observados: `true`, `false`, `false`, `true`, todos de acordo com
+  as previsões;
+- `mvn test` não foi executado nesta sessão, pois não existem testes específicos
+  para este exercício e a alteração foi validada por compilação e execução;
+- permaneceu o aviso do Maven recomendando `--release 17`; o `pom.xml` não foi
+  alterado;
+- o Maven utilizou o JDK 23 para compilar com alvo 17; o comando `java` não
+  estava no `PATH`, portanto a execução utilizou diretamente o executável do JDK
+  localizado pelo Maven.
+
+#### Ponto de retomada
+
+Gabriel concluiu a explicação Feynman principal. No caso-limite, previu
+inicialmente que `a == b`, com ambas as referências `null`, poderia imprimir
+`null` ou `false`. Foi explicado que o resultado é `true`, pois o `println`
+recebe o resultado booleano da comparação e ambas as referências possuem o
+valor `null`. Também foi diferenciada a impressão direta de `a`, que imprime
+`null`, da expressão `a == b`, que imprime `true`, e registrado que chamar
+`a.equals(b)` causaria `NullPointerException`.
+
+Na próxima sessão, solicitar apenas que Gabriel reconstrua essa explicação em
+uma frase. Se acertar, concluir formalmente o Exercício 01, criar seu relatório
+individual e iniciar o **Exercício 02 — String Pool**. Não recomeçar a
+implementação nem repetir toda a explicação Feynman.

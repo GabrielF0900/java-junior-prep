@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Laboratório 01 — Igualdade de valores e referências</title>
+  <style>
+    @page { size: A4; margin: 18mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #172033; font: 14px/1.55 Arial, sans-serif; }
+    h1, h2, h3 { color: #172554; margin: 0 0 10px; }
+    h1 { font-size: 26px; line-height: 1.2; }
+    h2 { margin-top: 24px; padding-bottom: 5px; border-bottom: 2px solid #c7d2fe; font-size: 18px; }
+    h3 { margin-top: 16px; font-size: 15px; }
+    p { margin: 7px 0; }
+    ul, ol { margin: 7px 0 7px 22px; padding: 0; }
+    li { margin: 4px 0; }
+    code { font-family: Consolas, monospace; color: #312e81; }
+    pre { padding: 12px 14px; border: 1px solid #c7d2fe; border-radius: 8px; background: #eef2ff; white-space: pre-wrap; }
+    .hero { padding: 22px; border-radius: 14px; color: white; background: linear-gradient(135deg, #312e81, #4f46e5); }
+    .hero h1, .hero p { color: white; }
+    .tag { display: inline-block; margin-bottom: 10px; padding: 4px 9px; border-radius: 999px; background: #fbbf24; color: #422006; font-weight: bold; font-size: 11px; }
+    .box { margin: 14px 0; padding: 12px 14px; border-left: 4px solid #4f46e5; background: #f8fafc; }
+    .status { border-left-color: #f59e0b; background: #fffbeb; }
+    .success { border-left-color: #059669; background: #ecfdf5; }
+    .next { border-left-color: #7c3aed; background: #f5f3ff; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .card { padding: 11px; border: 1px solid #dbeafe; border-radius: 8px; break-inside: avoid; }
+    .footer { margin-top: 28px; padding-top: 8px; border-top: 1px solid #cbd5e1; color: #64748b; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <span class="tag">JAVA CORE · SEMANA 1 · TÓPICO 1.1</span>
+    <h1>Laboratório 01<br>Igualdade de valores e referências</h1>
+    <p>Relatório de aprendizagem de Gabriel Falcão da Cruz · 12/08/2026</p>
+  </section>
+
+  <div class="box status">
+    <strong>Status:</strong> implementação e execução concluídas. Falta apenas recuperar sem consulta a explicação do caso-limite <code>null == null</code> para concluir formalmente o laboratório.
+  </div>
+
+  <h2>Qual foi o objetivo?</h2>
+  <p>Investigar, por meio de previsão e execução, o que o operador <code>==</code> compara em dois contextos diferentes:</p>
+  <ul>
+    <li>em tipos primitivos, compara os valores;</li>
+    <li>em variáveis de referência, verifica se elas referenciam a mesma instância.</li>
+  </ul>
+  <p>O laboratório também separou quatro operações que costumam ser confundidas: declarar uma variável, criar um objeto com <code>new</code>, atribuir uma referência e comparar referências.</p>
+
+  <h2>O que foi praticado?</h2>
+  <div class="grid">
+    <div class="card"><strong>Primitivos iguais</strong><br><code>10 == 10</code> resulta em <code>true</code>.</div>
+    <div class="card"><strong>Primitivos diferentes</strong><br><code>10 == 20</code> resulta em <code>false</code>.</div>
+    <div class="card"><strong>Objetos distintos</strong><br>Duas execuções de <code>new Pessoa()</code> criam duas instâncias; <code>==</code> resulta em <code>false</code>.</div>
+    <div class="card"><strong>Referência compartilhada</strong><br><code>terceiraPessoa = primeiraPessoa</code> copia a referência; <code>==</code> resulta em <code>true</code>.</div>
+  </div>
+
+  <pre>Pessoa a = new Pessoa(); // primeira instância
+Pessoa b = new Pessoa(); // segunda instância
+Pessoa c = a;            // copia a referência de a
+
+a == b  // false: instâncias distintas
+a == c  // true: mesma instância</pre>
+
+  <h2>O que Gabriel demonstrou ter aprendido?</h2>
+  <div class="box success">
+    Gabriel previu corretamente os quatro resultados, implementou os experimentos e explicou que <code>c = a</code> não cria nem copia um objeto: copia a referência. Também identificou corretamente dois objetos e três variáveis de referência no exemplo Feynman.
+  </div>
+  <p>A principal melhoria de linguagem é trocar “mesmo endereço físico no heap” por “mesma instância” ou “mesmo objeto”. A JVM administra internamente as referências, e Java não exige que elas sejam tratadas pelo programador como endereços expostos.</p>
+
+  <h2>Quais benefícios este laboratório traz?</h2>
+  <ol>
+    <li><strong>Entrevistas:</strong> permite responder com precisão à pergunta clássica sobre <code>==</code> versus igualdade de objetos.</li>
+    <li><strong>Menos bugs:</strong> evita usar <code>==</code> esperando comparar o conteúdo lógico de objetos.</li>
+    <li><strong>Base para coleções:</strong> prepara o entendimento de <code>equals()</code>, <code>hashCode()</code>, <code>HashSet</code> e <code>HashMap</code>.</li>
+    <li><strong>Leitura de código:</strong> ajuda a reconhecer quando uma atribuição cria um objeto e quando apenas compartilha uma referência.</li>
+    <li><strong>Depuração:</strong> facilita compreender alterações observadas por duas variáveis que referenciam a mesma instância.</li>
+  </ol>
+
+  <h2>Último fechamento: caso <code>null</code></h2>
+  <pre>Pessoa a = null;
+Pessoa b = null;
+System.out.println(a == b); // true</pre>
+  <p>O programa imprime o resultado booleano da comparação, não o conteúdo isolado de uma variável. Como ambas as referências possuem o valor <code>null</code>, a comparação com <code>==</code> resulta em <code>true</code>. Já chamar <code>a.equals(b)</code> causaria <code>NullPointerException</code>, pois <code>a</code> não referencia um objeto.</p>
+
+  <h2>Próximo laboratório: String Pool</h2>
+  <div class="box next">
+    <strong>Exercício 02 — String Pool</strong><br>
+    Continuaremos no tópico Java Core 1.1. O objetivo será descobrir por que algumas comparações de <code>String</code> com <code>==</code> parecem funcionar, embora <code>==</code> continue comparando referências.
+  </div>
+  <p>O experimento deverá comparar, sem antecipar a solução completa:</p>
+  <ul>
+    <li>dois literais com o mesmo texto;</li>
+    <li>um literal e uma <code>String</code> criada com <code>new</code>;</li>
+    <li><code>==</code> e <code>equals()</code> nesses cenários;</li>
+    <li>previsão, resultado observado e explicação do papel do String Pool.</li>
+  </ul>
+  <p><strong>Benefício:</strong> compreender um comportamento muito cobrado em entrevistas e evitar comparações frágeis de texto. O laboratório não será iniciado antes do fechamento do caso <code>null</code> do Exercício 01.</p>
+
+  <div class="footer">Java Junior Prep · Active Recall + Técnica de Feynman · Fonte de continuidade: HISTORICO_ESTUDOS.md</div>
+</body>
+</html>

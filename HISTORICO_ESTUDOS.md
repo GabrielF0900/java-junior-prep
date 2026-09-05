@@ -117,8 +117,10 @@ src/main/java/br/com/gabrielfalcao/prep/javacore/semana1/
 ## Relatório individual de cada exercício
 
 O relatório de avaliação não será criado antecipadamente. Depois que Gabriel
-concluir um exercício, será criado um arquivo `.md` dentro da mesma pasta,
-baseado no código e nas explicações realmente apresentados.
+concluir um exercício, será criado um arquivo `.md` em
+`relatorios/<trilha>/semanaN/`, baseado no código e nas explicações realmente
+apresentados. Caminho atualizado na reorganização de 05/09/2026; anteriormente
+a orientação era guardar o relatório dentro da pasta do exercício.
 
 Cada relatório individual deverá conter:
 

@@ -56,43 +56,80 @@ O main atual contém `{1, 2, 3, 2}`. As impressões mostram o HashSet no caminho
 ## Testes
 
 | Nº | Cenário | Entrada | Esperado | Obtido | Evidência |
-| -: | ------------------------ | ---------------- | -------: | -----------------------------: | --------------------------------- |
-| 1 | Duplicata no final | `[1, 2, 3, 2]` | `true` | `true`, informado por Gabriel | aguardando arquivo no repositório |
-| 2 | Sem duplicata | `[1, 2, 3, 4]` | `false` | `false`, informado por Gabriel | aguardando arquivo no repositório |
-| 3 | Duplicata consecutiva | `[5, 5, 8, 9]` | `true` | Pendente | Pendente |
-| 4 | Número negativo repetido | `[-1, 2, 3, -1]` | `true` | Pendente | Pendente |
-| 5 | Elemento único | `[7]` | `false` | Pendente | Pendente |
-| 6 | Array vazio | `[]` | `false` | Pendente | Pendente |
+| -: | ------------------------ | ---------------- | -------: | ------: | ------------------ |
+| 1 | Duplicata no final | `[1, 2, 3, 2]` | `true` | `true` | [Ver evidência](imagens/teste-01-duplicata-final.png) |
+| 2 | Sem duplicata | `[1, 2, 3, 4]` | `false` | `false` | [Ver evidência](imagens/teste-02-sem-duplicata.png) |
+| 3 | Duplicata consecutiva | `[5, 5, 8, 9]` | `true` | `true` | [Ver evidência](imagens/teste-03-duplicata-consecutiva.png) |
+| 4 | Número negativo repetido | `[-1, 2, 3, -1]` | `true` | `true` | [Ver evidência](imagens/teste-04-numero-negativo.png) |
+| 5 | Elemento único | `[7]` | `false` | `false` | [Ver evidência](imagens/teste-05-elemento-unico.png) |
+| 6 | Array vazio | `[]` | `false` | `false` | [Ver evidência](imagens/teste-06-array-vazio.png) |
 
-Não existem testes automatizados específicos deste desafio. O SanityCheckTest geral não valida este algoritmo. Os dois primeiros resultados são relatos de execução manual; os quatro restantes continuam pendentes.
+Os seis casos manuais produziram os resultados esperados. Foram validados
+cenários com duplicata, sem duplicata, repetição consecutiva, número negativo,
+elemento único e array vazio.
+
+O array vazio é um teste local adicional de robustez e pode estar fora das
+restrições de algumas plataformas.
+
+Não existem testes automatizados específicos deste desafio. O SanityCheckTest geral não valida este algoritmo.
 
 ## Evidências visuais
 
-[Orientações e nomes dos arquivos](imagens/README.md). Nenhum print foi encontrado no repositório. Gabriel informou que os dois primeiros já foram capturados; a inclusão dos arquivos ainda está pendente.
+[Índice das evidências](imagens/README.md).
 
 ### Teste 01 — Duplicata no final
 
-> Evidência pendente: inserir o print já capturado, conforme informado por Gabriel; o arquivo ainda não está no repositório.
+- Entrada: `[1, 2, 3, 2]`
+- Resultado esperado: `true`
+- Resultado obtido: `true`
+- Validação: aprovada.
+
+![Teste 01 — Duplicata no final](imagens/teste-01-duplicata-final.png)
 
 ### Teste 02 — Sem duplicata
 
-> Evidência pendente: inserir o print já capturado, conforme informado por Gabriel; o arquivo ainda não está no repositório.
+- Entrada: `[1, 2, 3, 4]`
+- Resultado esperado: `false`
+- Resultado obtido: `false`
+- Validação: aprovada.
+
+![Teste 02 — Sem duplicata](imagens/teste-02-sem-duplicata.png)
 
 ### Teste 03 — Duplicata consecutiva
 
-> Evidência pendente: o print será adicionado depois da execução local.
+- Entrada: `[5, 5, 8, 9]`
+- Resultado esperado: `true`
+- Resultado obtido: `true`
+- Validação: aprovada.
+
+![Teste 03 — Duplicata consecutiva](imagens/teste-03-duplicata-consecutiva.png)
 
 ### Teste 04 — Número negativo repetido
 
-> Evidência pendente: o print será adicionado depois da execução local.
+- Entrada: `[-1, 2, 3, -1]`
+- Resultado esperado: `true`
+- Resultado obtido: `true`
+- Validação: aprovada.
+
+![Teste 04 — Número negativo repetido](imagens/teste-04-numero-negativo.png)
 
 ### Teste 05 — Elemento único
 
-> Evidência pendente: o print será adicionado depois da execução local.
+- Entrada: `[7]`
+- Resultado esperado: `false`
+- Resultado obtido: `false`
+- Validação: aprovada.
+
+![Teste 05 — Elemento único](imagens/teste-05-elemento-unico.png)
 
 ### Teste 06 — Array vazio
 
-> Evidência pendente: o print será adicionado depois da execução local.
+- Entrada: `[]`
+- Resultado esperado: `false`
+- Resultado obtido: `false`
+- Validação: aprovada.
+
+![Teste 06 — Array vazio](imagens/teste-06-array-vazio.png)
 
 ## Complexidade
 
@@ -105,7 +142,7 @@ Essa justificativa acompanha o código; Gabriel ainda fará sua revisão de Big 
 
 ## Explicação Feynman
 
-> Pendente: Gabriel escreverá esta explicação com suas próprias palavras depois dos testes.
+> Pendente: Gabriel escreverá esta explicação com suas próprias palavras.
 
 ## Erros corrigidos e aprendizados
 
@@ -119,13 +156,9 @@ As duas correções de tentativas abaixo foram relatadas por Gabriel no históri
 
 ## Próximas etapas
 
-1. executar os quatro casos pendentes;
-2. salvar os seis prints, incluindo os dois já capturados segundo Gabriel;
-3. atualizar os resultados e os vínculos das evidências reais;
-4. escrever explicação Feynman;
-5. revisar Big O;
-6. remover ou manter as impressões didáticas do código mediante decisão de Gabriel;
-7. realizar a revisão final;
-8. preparar commit somente depois da aprovação.
-
-Retomada imediata: inserir primeiro os dois prints já capturados, executar `{5, 5, 8, 9}` e salvar `teste-03-duplicata-consecutiva.png`. Nenhuma alteração Java foi feita para preparar esta documentação.
+1. Gabriel realizar a explicação Feynman com as próprias palavras;
+2. Gabriel justificar tempo médio `O(n)` e espaço adicional `O(n)`;
+3. decidir sobre a permanência dos `println` didáticos;
+4. realizar revisão final;
+5. marcar como concluído somente depois dessa validação;
+6. preparar o próximo commit.

@@ -205,39 +205,43 @@ O calendário posiciona Contains Duplicate em **DSA, semana 1, tópico 2.1 — H
 - Há `main` com `{1, 2, 3, 2}` e impressões didáticas do HashSet no retorno, da presença ou ausência de repetição e do resultado.
 - `Exercicio05Sets.java`, em `javacore/semana1/exercicio05sets/`, contém prática de HashSet e comentários sobre interface, generics, referências, hashing, colisões e complexidade média. A presença desses comentários não comprova quanto do material foi estudado.
 - Two Sum está implementado com HashMap em `src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/TwoSum.java`. Seu relatório `relatorios/dsa/semana1/two-sum/README.md` ainda contém campos de testes, complexidade e Feynman pendentes; a conclusão do estudo é informação do estudante, não uma conclusão inferida desse relatório.
-- Contains Duplicate agora possui [documentação individual](relatorios/dsa/semana1/contains-duplicate/README.md) e pasta de imagens com README de orientação. Não foram encontrados testes automatizados específicos nem prints versionados. O único método JUnit encontrado é `SanityCheckTest.testMath()`, sem cobertura dos desafios.
+- Contains Duplicate possui [documentação individual](relatorios/dsa/semana1/contains-duplicate/README.md) atualizada e seis evidências visuais em `relatorios/dsa/semana1/contains-duplicate/imagens/`. Não foram encontrados testes automatizados específicos. O único método JUnit encontrado é `SanityCheckTest.testMath()`, sem cobertura dos desafios.
 
-### Testes manuais e pendências
+### Testes manuais e evidências
 
-**Executados manualmente, segundo Gabriel em 11/09/2026:** `[1, 2, 3, 2]` → `true`; `[1, 2, 3, 4]` → `false`. O primeiro caso está no main atual; o segundo não está salvo no fonte. Nenhuma dessas execuções foi repetida nesta tarefa documental.
+Os seis testes manuais foram executados por Gabriel e as capturas foram conferidas em 11/09/2026:
 
-**Ainda precisam ser executados e registrados:**
+| Entrada | Resultado observado | Validação |
+| --- | ---: | --- |
+| `[1, 2, 3, 2]` | `true` | Aprovado |
+| `[1, 2, 3, 4]` | `false` | Aprovado |
+| `[5, 5, 8, 9]` | `true` | Aprovado |
+| `[-1, 2, 3, -1]` | `true` | Aprovado |
+| `[7]` | `false` | Aprovado |
+| `[]` | `false` | Aprovado |
 
-| Entrada | Resultado esperado |
-| --- | --- |
-| `[5, 5, 8, 9]` | `true` |
-| `[-1, 2, 3, -1]` | `true` |
-| `[7]` | `false` |
-| `[]` | `false` |
+As imagens foram adicionadas em `relatorios/dsa/semana1/contains-duplicate/imagens/` e vinculadas à documentação individual. Testes e evidências não são mais pendências. O array vazio é um caso local adicional de robustez e pode estar fora das restrições de algumas plataformas.
 
 ### Ponto exato de parada
 
-Contains Duplicate permanece **Em validação**, implementado e não concluído. A estrutura documental foi criada; continuam pendentes quatro testes, inclusão dos seis prints, atualização dos resultados, explicação Feynman, revisão da justificativa de complexidade e revisão final antes de qualquer commit aprovado.
+Contains Duplicate permanece **Em validação**, implementado e não concluído.
+
+Implementação e seis testes manuais concluídos, com evidências visuais.
+Próxima etapa: explicação Feynman, justificativa de Big O, decisão sobre os
+println didáticos e revisão final.
 
 O escopo combinado para Big O é: operações de HashSet como `O(1)` em média; percurso do array como `O(n)`; tempo médio total como `O(n)`; espaço adicional como `O(n)`, considerando até n valores distintos. Esses custos descrevem a estratégia implementada, não medições de execução. Os println serão mantidos temporariamente para fins didáticos, conforme decisão informada por Gabriel.
 
-A central hierárquica foi definida e criada em 11/09/2026: [README principal](README.md) → [central geral](relatorios/README.md) → [DSA](relatorios/dsa/README.md) → [Contains Duplicate](relatorios/dsa/semana1/contains-duplicate/README.md). A análise em `docs/ARQUITETURA_ATUAL_REPOSITORIO.md` representa essa estrutura. O código oficial permanece em src/ e os prints ficam na subpasta imagens/ do desafio. Gabriel informou que já capturou os dois primeiros prints; nenhum arquivo de imagem foi encontrado no repositório.
+A central hierárquica foi definida e criada em 11/09/2026: [README principal](README.md) → [central geral](relatorios/README.md) → [DSA](relatorios/dsa/README.md) → [Contains Duplicate](relatorios/dsa/semana1/contains-duplicate/README.md). A análise em `docs/ARQUITETURA_ATUAL_REPOSITORIO.md` representa essa estrutura. O código oficial permanece em src/ e os seis prints ficam na subpasta imagens/ do desafio.
 
 ### Próxima ação
 
-1. inserir os dois prints já capturados na pasta de imagens;
-2. executar `{5, 5, 8, 9}`;
-3. salvar `teste-03-duplicata-consecutiva.png`;
-4. executar os três testes restantes;
-5. atualizar o README individual;
-6. realizar Feynman e revisão de Big O.
-
-Os dois prints capturados são informação de Gabriel, ainda aguardando inclusão como `teste-01-duplicata-final.png` e `teste-02-sem-duplicata.png`. Revisão final e aprovação continuam necessárias antes de preparar commit.
+1. realizar a explicação Feynman com as próprias palavras;
+2. justificar tempo médio `O(n)` e espaço adicional `O(n)`;
+3. decidir sobre a permanência dos `println` didáticos;
+4. realizar a revisão final;
+5. marcar como concluído somente depois dessa validação;
+6. preparar o próximo commit após aprovação.
 
 ## Registro cronológico
 
@@ -463,3 +467,26 @@ Depois, decidir sobre as impressões didáticas do código e realizar revisão f
 - Foram verificados 72 links relativos para arquivos/diretórios, sem links quebrados. O conteúdo original de Two Sum foi preservado integralmente após o título, e o caminho antigo não permaneceu duplicado.
 - `git diff --check` e `git diff --cached --check` não apontaram erros de whitespace. Nenhum PNG foi criado, e nenhuma pendência de evidência ou aprendizagem foi concluída automaticamente.
 - O git mv registrou somente a movimentação solicitada no índice; não houve commit nem push. Os testes manuais pendentes não foram executados nesta tarefa.
+
+### 11/09/2026 — Validação das evidências de Contains Duplicate
+
+Gabriel executou os seis testes manuais de Contains Duplicate. As capturas reais foram encontradas em `relatorios/dsa/semana1/contains-duplicate/imagens/`, inspecionadas individualmente e vinculadas à documentação do desafio:
+
+| Entrada | Resultado observado | Validação |
+| --- | ---: | --- |
+| `[1, 2, 3, 2]` | `true` | Aprovado |
+| `[1, 2, 3, 4]` | `false` | Aprovado |
+| `[5, 5, 8, 9]` | `true` | Aprovado |
+| `[-1, 2, 3, -1]` | `true` | Aprovado |
+| `[7]` | `false` | Aprovado |
+| `[]` | `false` | Aprovado |
+
+As seis imagens mostram o estado do HashSet, a mensagem sobre duplicação, a entrada utilizada e o resultado final. A ordem das mensagens antes da linha `Entrada` não invalida as evidências. O [README individual](relatorios/dsa/semana1/contains-duplicate/README.md) e o índice da pasta de imagens foram atualizados; testes e evidências não são mais pendências.
+
+Contains Duplicate continua **Em validação**. A explicação Feynman, a justificativa oral de Big O e a revisão final permanecem pendentes. Também será decidido se os `println` didáticos continuarão no código.
+
+#### Ponto exato de parada
+
+Implementação e seis testes manuais concluídos, com evidências visuais.
+Próxima etapa: explicação Feynman, justificativa de Big O, decisão sobre os
+println didáticos e revisão final.

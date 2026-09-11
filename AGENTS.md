@@ -250,3 +250,14 @@ Um laboratório somente está concluído quando Gabriel consegue:
 
 Marcar uma atividade como concluída depende de aprendizagem demonstrada, não apenas de o código compilar.
 
+## Documentação individual dos desafios
+
+- Preserve o código original do estudante, seus comentários e tentativas. Não forneça solução completa antes da tentativa, respeitando os níveis de dicas e as exceções de pedido explícito já estabelecidas neste documento.
+- Mantenha o código oficial em `src/` e a documentação de prática em `relatorios/`.
+- Crie uma pasta individual por desafio no padrão `relatorios/<trilha>/semanaN/<desafio>/README.md`. A página pode registrar um desafio em andamento; não deve simular uma avaliação final.
+- Guarde evidências visuais na subpasta `imagens/`, com um README de orientação. Nunca invente resultados, imagens ou evidências; não crie PNGs vazios nem links para imagens inexistentes.
+- Preserve relatórios históricos, tentativas e campos pendentes. A documentação deve distinguir evidência encontrada no repositório de informação fornecida pelo estudante.
+- Não marque um desafio como concluído sem implementação, testes, explicação Feynman e revisão, conforme os critérios pedagógicos existentes.
+- Mantenha [a central geral](relatorios/README.md), [o índice de DSA](relatorios/dsa/README.md) e o índice da trilha correspondente atualizados.
+- Use links relativos entre índices, documentação individual, código oficial e imagens reais.
+- Atualize `HISTORICO_ESTUDOS.md` ao encerrar uma sessão, conforme o protocolo de encerramento já registrado nele. Não apague registros cronológicos anteriores.

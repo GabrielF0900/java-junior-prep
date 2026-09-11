@@ -4,6 +4,8 @@ Data: 05/09/2026. Repositório local: `C:\Projetos\java-junior-prep`.
 Branch utilizada: `chore/reorganiza-arquitetura`, criada a partir de `main`.
 Remoto: `https://github.com/GabrielF0900/java-junior-prep.git`.
 
+> Nota de continuidade — 11/09/2026: os caminhos de Two Sum citados neste relatório registram a reorganização de 05/09. O arquivo antes localizado em `relatorios/dsa/semana1/two-sum.md` foi posteriormente movido para [relatorios/dsa/semana1/two-sum/README.md](../relatorios/dsa/semana1/two-sum/README.md). Os registros e estados Git abaixo permanecem históricos. Consulte a [arquitetura atual](ARQUITETURA_ATUAL_REPOSITORIO.md) para a central criada depois.
+
 ## 1. Resultado
 
 Java Core e DSA foram separados nos caminhos autorizados. A implementação final

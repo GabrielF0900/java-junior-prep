@@ -1,6 +1,6 @@
 # Central de Estudos e Desafios
 
-[Voltar ao README principal](../README.md)
+[Início](../README.md)
 
 Esta central reúne desafios resolvidos, exercícios em andamento, documentação individual, links para os códigos, testes e evidências, explicações Feynman e análise de complexidade. Navegue pela trilha e depois pela semana e pelo desafio.
 
@@ -35,4 +35,7 @@ Os relatórios Java Core já existentes em HTML/PDF permanecem em seus locais. A
 | Em validação | Implementação existente; testes, evidências, explicação ou revisão ainda pendentes |
 | Concluído | Implementação, testes, explicação Feynman e revisão concluídos, com aprendizagem demonstrada |
 
-A existência de arquivo não significa conclusão. O status de Two Sum é apresentado como concluído **segundo o histórico de estudos**, que registra a informação de Gabriel; os campos antigos ainda pendentes no relatório foram preservados. Contains Duplicate continua **Em validação**.
+A existência de arquivo não significa conclusão pedagógica. Nesta central, Two Sum
+e Contains Duplicate estão **Implementados e testados** tecnicamente, com seis
+casos manuais e evidências visuais cada. Revisões pessoais continuam registradas
+no histórico quando forem úteis.

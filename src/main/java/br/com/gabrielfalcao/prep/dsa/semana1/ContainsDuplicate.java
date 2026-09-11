@@ -9,7 +9,7 @@ public class ContainsDuplicate {
     public static void main(String[] args) {
 
         // Entrada utilizada apenas para testar localmente.
-        int[] nums = {};
+        int[] nums = {1, 2, 3, 2};
 
         ContainsDuplicate desafio = new ContainsDuplicate();
         boolean resultado = desafio.containsDuplicate(nums);

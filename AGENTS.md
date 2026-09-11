@@ -261,3 +261,19 @@ Marcar uma atividade como concluída depende de aprendizagem demonstrada, não a
 - Mantenha [a central geral](relatorios/README.md), [o índice de DSA](relatorios/dsa/README.md) e o índice da trilha correspondente atualizados.
 - Use links relativos entre índices, documentação individual, código oficial e imagens reais.
 - Atualize `HISTORICO_ESTUDOS.md` ao encerrar uma sessão, conforme o protocolo de encerramento já registrado nele. Não apague registros cronológicos anteriores.
+
+## Documentação mínima dos desafios
+
+Para novos desafios, registrar somente:
+
+1. enunciado curto;
+2. estratégia;
+3. link para o código;
+4. três ou quatro testes relevantes;
+5. complexidade em duas ou três frases;
+6. explicação pessoal curta, quando útil;
+7. aprendizados principais.
+
+Não exigir atualização da arquitetura para cada teste ou imagem. Não exigir
+seis prints por desafio. O README individual é a fonte operacional; histórico e
+índices devem permanecer concisos.

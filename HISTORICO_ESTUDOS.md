@@ -184,7 +184,28 @@ atuais.
 
 ## Estado atual — 11/09/2026
 
-Este estado substitui o ponto de retomada de 12/08/2026. As seções iniciais sobre objetivo, separação das trilhas e organização criada descrevem o contexto original; os registros cronológicos anteriores permanecem preservados. Não se presume que todas as pendências antigas de Java Core tenham sido encerradas.
+Two Sum está implementado, testado manualmente em seis cenários e documentado
+com seis evidências visuais. Contains Duplicate também está implementado,
+testado manualmente em seis cenários e documentado com seis evidências visuais.
+O Big O básico dos dois algoritmos está registrado nos READMEs individuais. A
+revisão Feynman pessoal é opcional e não bloqueia o avanço para o próximo
+conteúdo do calendário.
+
+A documentação foi simplificada com navegação direta entre a raiz, as centrais,
+os desafios, o código e as evidências. As tentativas históricas continuam
+preservadas. O próximo passo é avançar para o conteúdo seguinte do calendário;
+qualquer revisão pessoal pode ser registrada depois.
+
+O histórico registra somente conclusão, dificuldade principal, ponto de parada
+e próxima ação. Testes detalhados permanecem no README individual do desafio.
+
+## Contexto consolidado anterior — preservado
+
+O bloco abaixo é uma fotografia documental anterior à simplificação. Ele é
+mantido para preservar decisões e contexto, mas não deve ser usado como estado
+corrente quando divergir do bloco acima.
+
+Este contexto substitui o ponto de retomada de 12/08/2026. As seções iniciais sobre objetivo, separação das trilhas e organização criada descrevem o contexto original; os registros cronológicos anteriores permanecem preservados. Não se presume que todas as pendências antigas de Java Core tenham sido encerradas.
 
 ### Contexto e progresso informado pelo estudante
 

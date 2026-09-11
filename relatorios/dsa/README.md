@@ -1,6 +1,6 @@
 # Desafios de DSA
 
-[Voltar para a central geral](../README.md)
+[Início](../../README.md) · [Central de estudos](../README.md)
 
 A trilha pratica algoritmos, estruturas de dados e justificativa de tempo e espaço. O uso de HashSet ou HashMap em um desafio não o transforma em laboratório de Java Core.
 
@@ -13,16 +13,12 @@ A trilha pratica algoritmos, estruturas de dados e justificativa de tempo e espa
 
 Calendário: 2.1 — HashMap/HashSet aplicado a problemas e 2.2 — Big O na prática.
 
-| Desafio | Estrutura principal | Status | Documentação | Código |
-| ------------------ | ------------------- | ---------------------------------------- | --------------- | -------------- |
-| Two Sum | HashMap | Concluído segundo o histórico de estudos | [Two Sum](semana1/two-sum/README.md) | [TwoSum.java](../../src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/TwoSum.java) |
-| Contains Duplicate | HashSet | Em validação | [Contains Duplicate](semana1/contains-duplicate/README.md) | [ContainsDuplicate.java](../../src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/ContainsDuplicate.java) |
+| Desafio | Estrutura principal | Status técnico | Documentação | Código | Evidências |
+| ------------------ | ------------------- | --------------- | --------------- | -------------- | -------------- |
+| Two Sum | `HashMap` | Implementado e testado | [Two Sum](semana1/two-sum/README.md) | [TwoSum.java](../../src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/TwoSum.java) | [Imagens](semana1/two-sum/imagens/) |
+| Contains Duplicate | `HashSet` | Implementado e testado | [Contains Duplicate](semana1/contains-duplicate/README.md) | [ContainsDuplicate.java](../../src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/ContainsDuplicate.java) | [Imagens](semana1/contains-duplicate/imagens/) |
 
-O [histórico](../../HISTORICO_ESTUDOS.md) atribui a conclusão de Two Sum à informação de Gabriel em 11/09/2026. Seu roteiro antigo mantém campos pendentes; a migração documental não os preencheu nem simulou uma nova avaliação.
-
-Two Sum possui seis casos manuais executados, todos com os resultados esperados, e seis evidências visuais vinculadas na [documentação individual](semana1/two-sum/README.md). As evidências foram acrescentadas posteriormente e não reescrevem retroativamente a avaliação pedagógica registrada.
-
-Contains Duplicate possui seis casos manuais executados, todos com os resultados esperados, e as seis evidências estão versionadas na pasta individual. O desafio continua **Em validação** porque ainda faltam a explicação Feynman, a justificativa oral de Big O e a revisão final. Não há testes automatizados específicos dos desafios.
+Os dois desafios possuem seis casos manuais executados, todos com os resultados esperados, e seis evidências visuais vinculadas em suas documentações individuais. O status técnico não substitui a revisão pessoal registrada no histórico.
 
 ## Semana 4
 

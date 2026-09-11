@@ -1,5 +1,9 @@
 # Relatório de reorganização — Java Junior Prep
 
+> **Registro histórico:** este documento descreve o estado do repositório na
+> data indicada. Para a estrutura atual, consulte
+> [ARQUITETURA_ATUAL_REPOSITORIO.md](ARQUITETURA_ATUAL_REPOSITORIO.md).
+
 Data: 05/09/2026. Repositório local: `C:\Projetos\java-junior-prep`.
 Branch utilizada: `chore/reorganiza-arquitetura`, criada a partir de `main`.
 Remoto: `https://github.com/GabrielF0900/java-junior-prep.git`.

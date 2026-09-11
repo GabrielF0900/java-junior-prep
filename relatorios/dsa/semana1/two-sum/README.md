@@ -1,10 +1,12 @@
 # Two Sum — DSA, semana 1
 
-[Voltar para a central de DSA](../../README.md)
+[Início](../../../../README.md) · [Central de estudos](../../../README.md) · [DSA](../../README.md) · [Evidências](imagens/)
 
 ## Acesso ao código-fonte
 
 [Consultar TwoSum.java oficial](../../../../src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/TwoSum.java)
+
+**Status técnico:** Implementado e testado.
 
 O código executável permanece em src/. As tentativas já presentes no apêndice são registros históricos preservados; nenhuma nova cópia da solução foi adicionada.
 
@@ -24,6 +26,9 @@ As evidências estão indexadas também no [README da pasta de imagens](imagens/
 Os seis testes manuais produziram os resultados esperados. Foram validados um
 caso comum, uma resposta formada no meio do array, valores repetidos, números
 negativos, zeros repetidos e um cenário local sem solução.
+
+<details>
+<summary>Ver evidências visuais dos testes</summary>
 
 ### Teste 01 — Caso comum
 
@@ -94,6 +99,8 @@ negativos, zeros repetidos e um cenário local sem solução.
 ![Teste 06 — Sem solução](imagens/teste-06-sem-solucao.png)
 
 O sexto caso não representa uma restrição obrigatória do problema tradicional, que pode garantir a existência de uma solução. Ele documenta o comportamento local da implementação quando nenhuma combinação é encontrada.
+
+</details>
 
 ## 0. Enunciado
 
@@ -248,38 +255,30 @@ public int[] twoSum(int[] nums, int target)
 
 ### Implementação Java
 
-A preencher somente depois do pseudocódigo.
+[Consultar a implementação canônica em `TwoSum.java`](../../../../src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/TwoSum.java).
 
 ---
 
-## 7. Testar
-
-| Cenário | Entrada | Saída esperada | Resultado |
-|---|---|---|---|
-| Caso comum | A preencher | A preencher | Pendente |
-| Valores repetidos | A preencher | A preencher | Pendente |
-| Números negativos | A preencher | A preencher | Pendente |
-| Resposta no final | A preencher | A preencher | Pendente |
-
----
-
-## 8. Analisar
+## 7. Analisar
 
 ### Complexidade de tempo
 
-A preencher.
+`O(n)` em média.
 
 ### Complexidade de espaço
 
-A preencher.
+`O(n)`.
 
-### Por que cheguei a essas complexidades?
+### Por que essas complexidades?
 
-A preencher.
+O algoritmo percorre o array uma vez. Em cada passagem, consulta ou insere no
+HashMap, operações com custo `O(1)` em média. Por isso, o tempo médio total é
+`O(n)`. O mapa pode armazenar até `n` elementos, então o espaço adicional é
+`O(n)`.
 
 ---
 
-## 9. Explicar
+## 8. Explicar
 
 ### Explicação Feynman
 
@@ -293,32 +292,36 @@ Explicar:
 6. como foi testada;
 7. quais são as complexidades.
 
-A preencher.
+Registro pessoal opcional de Gabriel.
 
 ---
 
-## 10. Retrospectiva
+## 9. Retrospectiva
 
 ### Onde tive dificuldade?
 
-A preencher.
+Registro pessoal opcional de Gabriel.
 
 ### O que aprendi?
 
-A preencher.
+Registro pessoal opcional de Gabriel.
 
 ### Que parte consigo reconstruir sem consultar?
 
-A preencher.
+Registro pessoal opcional de Gabriel.
 
 ### O que preciso revisar?
 
-A preencher.
+Registro pessoal opcional de Gabriel.
 
-## 11. Preservação das tentativas — reorganização de 05/09/2026
+<details>
+<summary>Ver tentativas e evolução da solução</summary>
 
-O registro acima foi preservado como histórico da prática; os campos de testes,
-complexidade e Feynman continuam pendentes para o estudante.
+## 10. Preservação das tentativas — reorganização de 05/09/2026
+
+O registro abaixo preserva a evolução da prática. Os seis resultados e a
+complexidade técnica estão registrados nas seções atuais; a explicação pessoal
+continua opcional para a continuidade do estudo.
 
 A implementação canônica está em
 `src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/TwoSum.java`, com package
@@ -423,3 +426,5 @@ public class TwoSumDesafioFinal {
 
 }
 ```
+
+</details>

@@ -14,6 +14,13 @@ O calendário `index.html` inclui Java Core (seis semanas), DSA, Testes, SQL, In
 
 A navegação documental agora parte do [README principal](../README.md), segue para a [central geral](../relatorios/README.md), os índices de [DSA](../relatorios/dsa/README.md) e [Java Core](../relatorios/javacore/README.md), e então para os relatórios individuais. Código, materiais teóricos, histórico e arquitetura mantêm suas responsabilidades anteriores.
 
+O README principal é a entrada para recrutadores. A navegação ativa usa links
+relativos entre a raiz, as centrais por trilha, os READMEs individuais, os
+códigos canônicos e as pastas de evidências. Este documento deve ser atualizado
+quando a estrutura ou a responsabilidade dos diretórios mudar. A inclusão de
+novos testes ou imagens em uma estrutura já documentada não exige nova
+atualização arquitetural.
+
 ## 2. Árvore real de diretórios
 
 **ARQUITETURA EXISTENTE**
@@ -31,6 +38,7 @@ java-junior-prep/
 ├── docs/
 │   ├── ARQUITETURA_ATUAL_REPOSITORIO.md
 │   ├── ARQUITETURA_REPOSITORIO_ANTES_DA_REORGANIZACAO.md
+│   ├── AUDITORIA_DOCUMENTACAO_ESTUDOS.md
 │   └── RELATORIO_REORGANIZACAO.md
 ├── materiais/javacore/semana1/
 │   ├── colecoes_java_pdf.html
@@ -141,10 +149,10 @@ Os rótulos sob o pacote-base explicitam a trilha para diferenciar semanas homô
 | Caminho | Responsabilidade | Conteúdo encontrado |
 | ------- | ---------------- | ------------------- |
 | Raiz | Orientação, calendário e build | AGENTS, README, histórico, index.html, pom.xml e .gitignore |
-| `docs/` | Arquitetura e registro da reorganização | Fotografia anterior, relatório de reorganização e arquitetura atual |
+| `docs/` | Arquitetura, auditoria e registro da reorganização | Arquitetura atual, auditoria documental, fotografia anterior e relatório de reorganização |
 | `materiais/javacore/semana1/` | Teoria para consulta | Guia de coleções HTML e guia de String Pool HTML/PDF |
 | `relatorios/` | Central de documentação | README geral, índices DSA e Java Core |
-| `relatorios/dsa/semana1/` | Registro individual de prática DSA | two-sum/README.md com roteiro preservado e contains-duplicate/README.md Em validação |
+| `relatorios/dsa/semana1/` | Registro individual de prática DSA | two-sum/README.md e contains-duplicate/README.md, ambos implementados e testados |
 | `relatorios/dsa/semana1/two-sum/imagens/` | Reunir evidências de Two Sum | README e seis PNGs de execuções manuais, incluídos e conferidos |
 | `relatorios/dsa/semana1/contains-duplicate/imagens/` | Reunir evidências de Contains Duplicate | README e seis PNGs de execuções manuais, incluídos e conferidos |
 | `relatorios/javacore/semana1/` | Relato de aprendizagem Java Core | Laboratório 01 em HTML/PDF |
@@ -187,8 +195,8 @@ Na tabela, os caminhos Java são relativos a `src/main/java/br/com/gabrielfalcao
 
 | Desafio | Arquivo Java | Semana | Estado aparente | Testes | Documentação |
 | ------- | ------------ | -----: | --------------- | ------ | ------------ |
-| Two Sum | `dsa/semana1/TwoSum.java` | 1 | Busca complemento com HashMap e retorna índices; array vazio se não encontrar. Concluído segundo Gabriel em 11/09/2026, não inferido da existência do fonte | seis casos manuais documentados e aprovados; nenhum teste automatizado específico | `relatorios/dsa/semana1/two-sum/README.md`: roteiro e duas tentativas preservados, com seis evidências adicionadas posteriormente |
-| Contains Duplicate | `dsa/semana1/ContainsDuplicate.java` | 1 | HashSet com consulta antes de inserção; implementado e em validação, não concluído | seis casos manuais documentados e aprovados; nenhum teste automatizado específico | `relatorios/dsa/semana1/contains-duplicate/README.md`: estratégia, fluxo, seis testes com evidências, complexidade e pendência Feynman |
+| Two Sum | `dsa/semana1/TwoSum.java` | 1 | Busca complemento com HashMap e retorna índices; o `main` demonstra `[1, 2, 6, 7, 8, 9]` com target `10` | Implementado e testado manualmente; seis evidências; nenhum teste automatizado específico | `relatorios/dsa/semana1/two-sum/README.md`: roteiro, duas tentativas preservadas e seis evidências |
+| Contains Duplicate | `dsa/semana1/ContainsDuplicate.java` | 1 | HashSet com consulta antes de inserção; o `main` demonstra `[1, 2, 3, 2]` | Implementado e testado manualmente; seis evidências; nenhum teste automatizado específico | `relatorios/dsa/semana1/contains-duplicate/README.md`: estratégia, fluxo, seis testes e complexidade |
 | Valid Parentheses | `dsa/semana4/ValidParentheses.java` | 4 | Somente package e TODO; sem algoritmo ou classe | Sem main e sem teste específico | Nenhum documento individual encontrado |
 
 O calendário situa Two Sum e Contains Duplicate em DSA 2.1 — HashMap/HashSet aplicado a problemas, com DSA 2.2 — Big O na prática após cada problema. O texto de Two Sum no calendário fala em guardar o complemento; o fonte guarda o valor e procura o complemento. Não é a mesma descrição literal, embora a estratégia implementada seja coerente com o problema.
@@ -204,47 +212,28 @@ O calendário situa Two Sum e Contains Duplicate em DSA 2.1 — HashMap/HashSet 
 - **Retornos:** true na primeira repetição, antes de adicionar novamente; false ao terminar o percurso sem repetição.
 - **Impressões:** o estado do conjunto é mostrado uma vez no caminho de retorno, não em cada iteração. A ordem dos elementos impressos não é garantida pelo HashSet.
 
-Mensagens literais presentes:
-
-```text
-HashSet:
-Número duplicado encontrado:
-Nenhum número duplicado foi encontrado.
-Resultado:
-```
-
-As duas primeiras recebem, respectivamente, o conjunto e o número; a última recebe o booleano no main. Os prefixos acima não são transcrição de uma execução nesta tarefa.
-
-| Entrada | Situação em 11/09/2026 | Resultado |
-| --- | --- | --- |
-| [1, 2, 3, 2] | Execução manual com evidência visual | true, aprovado |
-| [1, 2, 3, 4] | Execução manual com evidência visual | false, aprovado |
-| [5, 5, 8, 9] | Execução manual com evidência visual | true, aprovado |
-| [-1, 2, 3, -1] | Execução manual com evidência visual | true, aprovado |
-| [7] | Execução manual com evidência visual | false, aprovado |
-| [] | Execução manual com evidência visual; caso local adicional de robustez | false, aprovado |
-
-Existe [README individual](../relatorios/dsa/semana1/contains-duplicate/README.md), com [índice de imagens](../relatorios/dsa/semana1/contains-duplicate/imagens/README.md). As seis capturas estão legíveis e registram o estado do HashSet, a mensagem sobre duplicação, a entrada utilizada e o resultado final. Não há teste automatizado específico.
+Existe [README individual](../relatorios/dsa/semana1/contains-duplicate/README.md), com [índice de imagens](../relatorios/dsa/semana1/contains-duplicate/imagens/README.md). Os seis casos manuais e seus resultados estão documentados no relatório individual; não há teste automatizado específico.
 
 Arquivos de evidência: `teste-01-duplicata-final.png`, `teste-02-sem-duplicata.png`, `teste-03-duplicata-consecutiva.png`, `teste-04-numero-negativo.png`, `teste-05-elemento-unico.png` e `teste-06-array-vazio.png`. O padrão utilizado é `teste-NN-cenario.png`, com links relativos no README individual e no índice da pasta.
 
-O custo esperado da estratégia é tempo médio O(n) e espaço adicional O(n), com operações de HashSet O(1) em média. Contains Duplicate permanece **Em validação**: os seis testes manuais e suas evidências estão documentados, mas ainda faltam a explicação Feynman por Gabriel, a justificativa oral de Big O e a revisão final antes de qualquer commit aprovado.
+O custo esperado da estratégia é tempo médio O(n) e espaço adicional O(n), com operações de HashSet O(1) em média. Os seis testes manuais e suas evidências estão documentados; a revisão pessoal é opcional e não altera o status técnico **Implementado e testado**.
 
 ## 8. Documentação atual
 
 | Documento | Finalidade e limites |
 | --- | --- |
-| `README.md` | Entrada do projeto, execução, responsabilidades, árvore e acesso à central; Contains Duplicate consta como implementado e Em validação |
+| `README.md` | Entrada do projeto para recrutadores, execução, competências, desafios e navegação |
 | `index.html` | Calendário e hub de progresso; fonte de verdade de trilhas, tópicos e semanas, não prova de progresso pessoal salvo no navegador |
 | `AGENTS.md` | Método pedagógico, separação das trilhas, regras de colaboração e critérios de conclusão |
 | `HISTORICO_ESTUDOS.md` | Único histórico geral encontrado; continuidade, registros de 12/08 e atualização de 11/09/2026 nesta tarefa |
 | `docs/ARQUITETURA_REPOSITORIO_ANTES_DA_REORGANIZACAO.md` | Fotografia histórica anterior, com caminhos e problemas que não representam necessariamente o estado atual |
 | `docs/RELATORIO_REORGANIZACAO.md` | Registro de 05/09/2026 das movimentações, preservação e validações anteriores; não é segundo histórico geral de estudos |
 | `docs/ARQUITETURA_ATUAL_REPOSITORIO.md` | Este diagnóstico, com central implementada e pendências futuras separadas |
+| `docs/AUDITORIA_DOCUMENTACAO_ESTUDOS.md` | Auditoria anterior às correções de navegação e simplificação |
 | `relatorios/README.md` | Central geral, responsabilidades, trilhas e legenda de status |
 | `relatorios/dsa/README.md` | Índice por semana, status e links aos desafios e código |
 | `relatorios/javacore/README.md` | Índice dos relatórios existentes e arquivos ainda sem relatório |
-| `relatorios/dsa/semana1/contains-duplicate/README.md` | Documentação individual Em validação; seis casos manuais aprovados e Feynman pendente |
+| `relatorios/dsa/semana1/contains-duplicate/README.md` | Documentação individual; seis casos manuais aprovados e revisão pessoal opcional |
 | `relatorios/dsa/semana1/contains-duplicate/imagens/README.md` | Índice dos seis PNGs existentes, com entradas e resultados observados |
 | `relatorios/dsa/semana1/two-sum/imagens/README.md` | Índice dos seis PNGs existentes, com entradas, targets e resultados observados |
 | `relatorios/dsa/semana1/two-sum/README.md` | Documento individual de Two Sum: entendimento, plano, pseudocódigo e duas tentativas preservadas; seis evidências manuais acrescentadas sem preencher retroativamente os campos históricos |
@@ -281,7 +270,7 @@ No diagnóstico documental anterior de 11/09/2026, restrito a dois Markdown, nã
 - Os 13 arquivos Java mantiveram seus hashes SHA-256; pom.xml, index.html, .gitignore, testes, materiais e relatórios HTML/PDF também foram preservados.
 - Foram conferidos 72 links relativos para arquivos/diretórios, sem destinos ausentes. As referências antigas de Two Sum remanescentes são históricas e têm nota com o caminho atual.
 - O corpo original de Two Sum, do enunciado até a última tentativa, foi preservado integralmente no novo README. O arquivo antigo não ficou duplicado. Registros cronológicos anteriores do histórico foram preservados.
-- Os seis PNGs produzidos por Gabriel foram encontrados e conferidos posteriormente. Contains Duplicate permanece Em validação por causa das pendências pedagógicas.
+- Os seis PNGs produzidos por Gabriel foram encontrados e conferidos posteriormente. Os dois desafios estão tecnicamente implementados e testados; revisões pessoais não alteram esse estado.
 - `git diff --check` e `git diff --cached --check`: sem erros de whitespace; somente avisos de conversão futura LF/CRLF no diff de trabalho.
 
 Branch inicial: `chore/reorganiza-arquitetura`.
@@ -314,7 +303,7 @@ Essas alterações foram preservadas. A central acrescentou índices, documenta�
 
 A proposta do diagnóstico anterior foi aprovada pelo estudante e implementada em 11/09/2026. O padrão é `relatorios/<trilha>/semanaN/<desafio>/README.md`, com `imagens/README.md` para orientar as evidências reais. A árvore existente da seção 2 já inclui essas pastas; elas não são mais proposta.
 
-Two Sum foi movido de `relatorios/dsa/semana1/two-sum.md` para [relatorios/dsa/semana1/two-sum/README.md](../relatorios/dsa/semana1/two-sum/README.md). O nome antigo nesta frase é histórico. Todas as tentativas, respostas, observações e campos pendentes foram mantidos; somente navegação, acesso ao código e seção de evidências foram acrescentados. Os trechos Java antigos do apêndice são preservação histórica, não uma segunda implementação oficial.
+Two Sum foi movido de `relatorios/dsa/semana1/two-sum.md` para [relatorios/dsa/semana1/two-sum/README.md](../relatorios/dsa/semana1/two-sum/README.md). O nome antigo nesta frase é histórico. Todas as tentativas, respostas, observações e registros pessoais foram mantidos; somente navegação, acesso ao código e seção de evidências foram acrescentados. Os trechos Java antigos do apêndice são preservação histórica, não uma segunda implementação oficial.
 
 O [README de Contains Duplicate](../relatorios/dsa/semana1/contains-duplicate/README.md) contém:
 
@@ -339,36 +328,37 @@ Two Sum utiliza o padrão `teste-NN-cenario.png`. Seus arquivos são `teste-01-c
 | ------- | -------------- | --------------- | ------------- |
 | Código | Java oficial preservado em src/; README individual aponta para ele | Nenhuma alteração Java nesta tarefa | Evitar duplicar ou substituir a implementação |
 | Central | README principal → central → trilha → desafio | Manter os índices conforme novos estudos reais | Facilitar navegação |
-| Documentação individual | Two Sum com histórico preservado e seis evidências; Contains Duplicate com seis resultados e evidências | Registrar Feynman de Contains Duplicate | Estrutura e testes não significam conclusão pedagógica |
+| Documentação individual | Two Sum com histórico preservado e seis evidências; Contains Duplicate com seis resultados e evidências | Manter os READMEs concisos | Estrutura e testes devem continuar separados da revisão pessoal |
 | Imagens | Seis PNGs de cada desafio vinculados por caminhos relativos | Preservar as evidências reais | Manter rastreabilidade das execuções manuais |
 | Testes DSA | Seis casos manuais de cada desafio; sem JUnit específico | Avaliar JUnit no momento autorizado | Consolidar prática sem antecipar trilha |
-| Big O | Justificativa curta documentada para Contains Duplicate | Gabriel revisar e explicar os custos | Demonstrar aprendizagem |
+| Big O | Justificativas técnicas registradas nos READMEs individuais | Revisão pessoal opcional | Demonstrar aprendizagem sem bloquear o avanço |
 | Documentos gerais | Histórico na raiz, teoria em materiais e arquitetura em docs | Preservar finalidade e continuidade | Separar responsabilidades |
 
-Não restam pastas propostas a criar para os dois desafios desta tarefa. As pendências são evidências, prática e revisão.
+Não restam pastas propostas a criar para os dois desafios desta tarefa. A
+estrutura técnica está implementada e documentada; revisões pessoais podem ser
+feitas depois.
 
 ## 13. Pontos que dependem de decisão ou ação
 
-- Gabriel realizar a explicação Feynman e justificar Big O com suas próprias palavras.
+- Gabriel pode registrar explicações Feynman pessoais quando isso ajudar a revisão.
 - Decidir se as impressões didáticas do código serão mantidas ou removidas, em uma alteração Java futura autorizada.
 - Decidir quando incluir JUnit conforme calendário ou solicitação, mantendo main para a prática atual.
-- Decidir posteriormente como atualizar os campos antigos do relatório Two Sum sem reiniciar um desafio informado como concluído.
-- Confirmar o fechamento das pendências antigas de Java Core somente mediante aprendizagem demonstrada.
-- Realizar revisão final e aprovar antes de preparar commit.
+- Decidir posteriormente se os `println` didáticos serão mantidos no código.
+- Avaliar JUnit específico quando o calendário ou a prática justificar.
 
 Local da documentação, subpasta de imagens, nomes de Contains Duplicate e português foram definidos pela solicitação desta central. Nenhum HTML/PDF, código ou material teórico foi movido.
 
 ## 14. Resumo para outro assistente
 
 - **Código-fonte:** `src/main/java/br/com/gabrielfalcao/prep/`.
-- **Contains Duplicate:** `src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/ContainsDuplicate.java`, implementado com HashSet, em validação.
-- **Two Sum:** `src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/TwoSum.java`, implementado com HashMap; estudo concluído segundo Gabriel em 11/09/2026.
+- **Contains Duplicate:** `src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/ContainsDuplicate.java`, implementado e testado com HashSet.
+- **Two Sum:** `src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/TwoSum.java`, implementado e testado com HashMap.
 - **Java Core:** `src/main/java/br/com/gabrielfalcao/prep/javacore/semana1/`, especialmente `exercicio05sets/Exercicio05Sets.java`.
 - **Histórico:** `HISTORICO_ESTUDOS.md`, na raiz, único histórico geral.
 - **Relatórios de estudo:** `relatorios/dsa/semana1/` e `relatorios/javacore/semana1/`. Relatório de reorganização: `docs/RELATORIO_REORGANIZACAO.md`.
 - **Imagens:** subpasta imagens/ por desafio com README; Contains Duplicate e Two Sum possuem seis PNGs cada no padrão teste-NN-cenario.png, todos conferidos e vinculados.
 - **Documentação criada:** `relatorios/dsa/semana1/contains-duplicate/README.md`, com subpasta imagens/; central geral em `relatorios/README.md`.
-- **Próximo passo:** Gabriel realizar a explicação Feynman, justificar Big O, decidir sobre os println didáticos e participar da revisão final. Contains Duplicate permanece Em validação.
+- **Próximo passo:** avançar para o próximo conteúdo do calendário; revisões pessoais e decisão sobre os `println` podem ocorrer depois.
 
 Enviar ao outro assistente, para continuidade:
 

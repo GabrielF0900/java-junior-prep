@@ -1,5 +1,9 @@
 # Arquitetura atual — Java Junior Prep
 
+> **Registro histórico:** este documento descreve o estado do repositório na
+> data indicada. Para a estrutura atual, consulte
+> [ARQUITETURA_ATUAL_REPOSITORIO.md](ARQUITETURA_ATUAL_REPOSITORIO.md).
+
 Documento de análise em 05/09/2026. Base: cópia local em `C:\Projetos\java-junior-prep`, cujo remoto `origin` aponta para `GabrielF0900/java-junior-prep`. Não foi feita comparação com o estado remoto no GitHub. Arquivos locais não rastreados também fazem parte deste retrato.
 
 Escopo: leitura e documentação. As propostas abaixo não foram implementadas. Nenhum exercício foi concluído, movido, renomeado ou corrigido nesta tarefa. `AGENTS.md` foi lido primeiro.

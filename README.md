@@ -1,169 +1,97 @@
-# ☕ Java Junior Prep
+# Java Junior Prep
 
-Repositório pessoal de Gabriel Falcão da Cruz para preparação em vagas Java
-Júnior. Reúne prática de Java Core, estruturas de dados e algoritmos (DSA),
-testes e materiais de estudo, seguindo um plano geral de 12 semanas.
+Repositório pessoal de preparação para entrevistas e testes técnicos de Java
+Júnior. O estudo combina Java 17, Java Core, estruturas de dados, algoritmos,
+JUnit, Mockito e SQL com prática, testes e explicação das decisões técnicas.
 
-A aprendizagem usa Active Recall e Técnica de Feynman: prever, implementar,
-executar e explicar. Um arquivo existente ou um build bem-sucedido não significa
-que o exercício esteja pedagogicamente concluído. Não criar soluções ou semanas
-antecipadamente.
+## Visão rápida
 
-## Central de documentação
+| Item | Informação |
+| --- | --- |
+| Linguagem principal | Java 17 |
+| Build | Maven |
+| Foco | Java Core, DSA, testes e SQL |
+| Método | Prática, testes e explicação |
+| Desafios documentados | Two Sum e Contains Duplicate |
 
-A central reúne desafios resolvidos, exercícios em andamento, documentação individual,
-links para os códigos, testes e evidências, explicações Feynman e análise de
-complexidade. Navegue pelas trilhas e depois pelos desafios.
+## Navegação rápida
 
-[📚 Acessar a Central de Estudos e Desafios](relatorios/README.md)
+| Quero acessar | Link |
+| --- | --- |
+| Central de estudos | [relatorios/](relatorios/README.md) |
+| Desafios de DSA | [relatorios/dsa/](relatorios/dsa/README.md) |
+| Laboratórios de Java Core | [relatorios/javacore/](relatorios/javacore/README.md) |
+| Código-fonte DSA | [src/main/java/.../dsa/](src/main/java/br/com/gabrielfalcao/prep/dsa/) |
+| Código-fonte Java Core | [src/main/java/.../javacore/](src/main/java/br/com/gabrielfalcao/prep/javacore/) |
+| Testes automatizados | [src/test/java/.../testes/](src/test/java/br/com/gabrielfalcao/prep/testes/) |
+| Calendário de estudos | [index.html](index.html) |
+| Arquitetura atual | [docs/ARQUITETURA_ATUAL_REPOSITORIO.md](docs/ARQUITETURA_ATUAL_REPOSITORIO.md) |
 
-## Tecnologias e execução
+## Desafios em destaque
 
-- Java 17; pacote-base `br.com.gabrielfalcao.prep`.
-- Maven, em um único projeto.
-- JUnit Jupiter 5.10.0 e Mockito 5.5.0, disponíveis para testes.
-- IDE principal: Google Antigravity.
+| Desafio | Estrutura | Código | Explicação | Evidências | Status técnico |
+| --- | --- | --- | --- | --- | --- |
+| Two Sum | `HashMap` | [TwoSum.java](src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/TwoSum.java) | [README](relatorios/dsa/semana1/two-sum/README.md) | [Imagens](relatorios/dsa/semana1/two-sum/imagens/) | Implementado e testado |
+| Contains Duplicate | `HashSet` | [ContainsDuplicate.java](src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/ContainsDuplicate.java) | [README](relatorios/dsa/semana1/contains-duplicate/README.md) | [Imagens](relatorios/dsa/semana1/contains-duplicate/imagens/) | Implementado e testado |
 
-Na raiz, com JDK 17 e Maven configurados:
+Cada desafio possui seis testes manuais aprovados e evidências visuais. Os
+relatórios individuais preservam o raciocínio e a evolução da implementação.
+
+## Competências demonstradas
+
+- arrays e percursos;
+- `HashMap` e `HashSet`;
+- busca por complemento;
+- detecção de duplicatas;
+- testes de casos comuns e casos-limite;
+- análise básica de tempo e espaço;
+- organização e documentação técnica.
+
+## Como executar
+
+Com Java 17 e Maven configurados, execute na raiz:
 
 ```bash
 mvn compile
 mvn test
 ```
 
-O teste implementado atualmente é `SanityCheckTest`, com uma asserção aritmética.
-Não existem testes específicos dos desafios nem uso de Mockito nos fontes atuais.
-`target/` e `.m2/` são saídas/cache locais ignorados pelo Git, não conteúdo de estudo.
+Os desafios também possuem um método `main` para demonstrações locais. Na IDE,
+abra a classe Java do desafio e execute o método `main`; as entradas, targets e
+resultados são impressos no console.
 
-## Responsabilidades
+O projeto possui um teste JUnit geral (`SanityCheckTest`). As evidências dos
+desafios são execuções manuais e não substituem testes automatizados específicos.
 
-| Local | Finalidade |
-| --- | --- |
-| `src/main/java/br/com/gabrielfalcao/prep/javacore/` | Fundamentos da linguagem e APIs: igualdade, String Pool, hashing e coleções. |
-| `src/main/java/br/com/gabrielfalcao/prep/dsa/` | Desafios algorítmicos, como Two Sum e Contains Duplicate, organizados por semana. |
-| `src/test/` | Testes dos exercícios e trilha de estudo de JUnit/Mockito. |
-| `materiais/` | Conteúdo teórico de estudo, separado por trilha e semana. |
-| `relatorios/` | Registros de tentativas, resultados e explicações de aprendizagem, por trilha e semana. |
-| `sql/` | Área para exercícios e scripts SQL, criada gradualmente conforme o calendário. |
-| `docs/` | Documentação de arquitetura, incluindo a fotografia anterior à reorganização. |
-| `index.html` | Calendário/hub e fonte de verdade dos tópicos e semanas. Inclui também Inglês e Storytelling. |
-| `HISTORICO_ESTUDOS.md` | Continuidade das sessões, pontos de retomada e registros históricos. |
-| `AGENTS.md` | Regras pedagógicas e de colaboração. |
-| `docs/RELATORIO_REORGANIZACAO.md` | Movimentações e validações da limpeza arquitetural. |
-
-O hub pode ser aberto no navegador. Salva progresso localmente e referencia uma
-API `/api/progress` cuja implementação não está neste repositório. Sua interface
-HTML é independente do build Maven.
-
-## Estado dos estudos
-
-- Java Core semana 1: seis exercícios pedagógicos preservados, incluindo os
-  experimentos atuais do exercício 01 e `Produto.java`. A separação interna dos
-  assuntos e as correções conceituais ficam para revisões pedagógicas.
-- Java Core semana 2: `StreamsExemplo.java` permanece reservado, sem implementação.
-- DSA semana 1: `TwoSum.java` preserva a implementação do estudante;
-  `ContainsDuplicate.java` está implementado com HashSet e Em validação, sem conclusão pedagógica.
-- DSA semana 4: `ValidParentheses.java` permanece somente com package e TODO,
-  alinhado ao calendário de Stack / Queue.
-- Testes: `SanityCheckTest.java` permanece geral; `SafeWalletServiceTest.java`
-  está reservado na semana 2, sem classe de teste implementada.
-- SQL: somente orientações em `sql/README.md`; ainda não há scripts.
-
-O plano geral dura 12 semanas; Java Core ocupa seis semanas no hub. A numeração
-dos tópicos não equivale à semana: por exemplo, Java Core 1.3 está na semana 2.
-Os registros históricos não devem ser reescritos para simular avanço do estudante.
-
-## Estrutura real
-
-A árvore abaixo lista os arquivos de estudo e documentação presentes. Pastas de
-Git, cache, build e IDE não fazem parte deste desenho pedagógico.
+## Estrutura do projeto
 
 ```text
 java-junior-prep/
-├── docs/
-│   ├── ARQUITETURA_ATUAL_REPOSITORIO.md
-│   ├── ARQUITETURA_REPOSITORIO_ANTES_DA_REORGANIZACAO.md
-│   └── RELATORIO_REORGANIZACAO.md
-├── materiais/
-│   └── javacore/
-│       └── semana1/
-│           ├── colecoes_java_pdf.html
-│           ├── guia-completo-string-pool-java17.html
-│           └── guia-completo-string-pool-java17.pdf
-├── relatorios/
-│   ├── README.md
-│   ├── dsa/
-│   │   ├── README.md
-│   │   └── semana1/
-│   │       ├── two-sum/
-│   │       │   ├── README.md
-│   │       │   └── imagens/README.md
-│   │       └── contains-duplicate/
-│   │           ├── README.md
-│   │           └── imagens/README.md
-│   └── javacore/
-│       ├── README.md
-│       └── semana1/
-│           ├── laboratorio-01-igualdade-referencias.html
-│           └── laboratorio-01-igualdade-referencias.pdf
-├── sql/
-│   └── README.md
-├── src/
-│   ├── main/
-│   │   └── java/
-│   │       └── br/
-│   │           └── com/
-│   │               └── gabrielfalcao/
-│   │                   └── prep/
-│   │                       ├── dsa/
-│   │                       │   ├── semana1/
-│   │                       │   │   ├── ContainsDuplicate.java
-│   │                       │   │   └── TwoSum.java
-│   │                       │   └── semana4/
-│   │                       │       └── ValidParentheses.java
-│   │                       └── javacore/
-│   │                           ├── semana1/
-│   │                           │   ├── exercicio01igualdadedereferencias/
-│   │                           │   │   ├── Exercicio01IgualdadeDeReferencias.java
-│   │                           │   │   └── Produto.java
-│   │                           │   ├── exercicio02stringpool/
-│   │                           │   │   └── Exercicio02StringPool.java
-│   │                           │   ├── exercicio03equalsehashcode/
-│   │                           │   │   └── Exercicio03EqualsEHashCode.java
-│   │                           │   ├── exercicio04listas/
-│   │                           │   │   └── Exercicio04Listas.java
-│   │                           │   ├── exercicio05sets/
-│   │                           │   │   └── Exercicio05Sets.java
-│   │                           │   └── exercicio06maps/
-│   │                           │       └── Exercicio06Maps.java
-│   │                           └── semana2/
-│   │                               └── StreamsExemplo.java
-│   └── test/
-│       └── java/
-│           └── br/
-│               └── com/
-│                   └── gabrielfalcao/
-│                       └── prep/
-│                           └── testes/
-│                               ├── semana2/
-│                               │   └── SafeWalletServiceTest.java
-│                               └── SanityCheckTest.java
-├── .gitignore
-├── AGENTS.md
-├── HISTORICO_ESTUDOS.md
-├── index.html
-├── pom.xml
-└── README.md
+├── docs/                 # Arquitetura, reorganização e auditorias
+├── materiais/            # Materiais teóricos
+├── relatorios/           # Índices, desafios, resultados e evidências
+├── sql/                  # Estudos e scripts SQL
+├── src/main/java/        # Código Java oficial
+├── src/test/java/        # Testes automatizados
+├── AGENTS.md             # Regras pedagógicas e de colaboração
+├── HISTORICO_ESTUDOS.md  # Continuidade e próximo ponto de estudo
+├── index.html            # Calendário e hub de estudos
+└── pom.xml               # Configuração Maven
 ```
 
-## Materiais e continuidade
+## Trilhas e continuidade
 
-- [Guia de coleções](materiais/javacore/semana1/colecoes_java_pdf.html).
-- [Guia de String Pool](materiais/javacore/semana1/guia-completo-string-pool-java17.html).
-- [Relatório do laboratório 01](relatorios/javacore/semana1/laboratorio-01-igualdade-referencias.html).
-- [Two Sum: roteiro e duas tentativas preservadas](relatorios/dsa/semana1/two-sum/README.md).
-- [Arquitetura anterior](docs/ARQUITETURA_REPOSITORIO_ANTES_DA_REORGANIZACAO.md).
-- [Relatório da reorganização](docs/RELATORIO_REORGANIZACAO.md).
-- [Histórico de estudos](HISTORICO_ESTUDOS.md).
+- [Central de estudos](relatorios/README.md): entrada geral para relatórios,
+  testes e evidências.
+- [DSA](relatorios/dsa/README.md): algoritmos, estruturas de dados e Big O.
+- [Java Core](relatorios/javacore/README.md): linguagem e APIs do Java.
+- [Histórico de estudos](HISTORICO_ESTUDOS.md): decisões e ponto de retomada.
+- [Relatório de reorganização](docs/RELATORIO_REORGANIZACAO.md): registro
+  histórico da organização dos arquivos.
 
-Gabriel Falcão da Cruz — estudante de Sistemas de Informação e certificado AWS SAA-C03.
+O calendário em `index.html` é a fonte de verdade das semanas e tópicos. A
+existência de um arquivo ou um build bem-sucedido não significa conclusão
+pedagógica.
+
+Gabriel Falcão da Cruz — estudante de Sistemas de Informação e certificado AWS
+SAA-C03.

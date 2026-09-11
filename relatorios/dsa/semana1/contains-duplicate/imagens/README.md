@@ -1,6 +1,6 @@
 # Evidências visuais — Contains Duplicate
 
-[Voltar ao desafio](../README.md)
+[Início](../../../../../README.md) · [Voltar ao desafio](../README.md) · [DSA](../../../README.md)
 
 Esta pasta reúne as evidências reais dos seis testes manuais, conferidas em 11/09/2026.
 

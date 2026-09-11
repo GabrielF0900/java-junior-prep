@@ -1,6 +1,6 @@
 # Contains Duplicate
 
-[ Voltar para a central de DSA](../../README.md)
+[Início](../../../../README.md) · [Central de estudos](../../../README.md) · [DSA](../../README.md) · [Evidências](imagens/)
 
 ## Informações do desafio
 
@@ -9,7 +9,7 @@
 | Trilha | DSA |
 | Semana | 1 |
 | Estrutura principal | HashSet |
-| Status | Em validação |
+| Status | Implementado e testado |
 | Linguagem | Java |
 
 Fontes: [histórico de estudos](../../../../HISTORICO_ESTUDOS.md), [arquitetura atual](../../../../docs/ARQUITETURA_ATUAL_REPOSITORIO.md) e código oficial. Os resultados manuais e as correções de tentativas foram informados por Gabriel em 11/09/2026; esta página não representa uma nova execução.
@@ -51,7 +51,7 @@ flowchart TD
 
 Assinatura: `public boolean containsDuplicate(int[] nums)`. O código oficial permanece somente em `src/`; esta página não mantém uma cópia da classe.
 
-O main atual contém `{1, 2, 3, 2}`. As impressões mostram o HashSet no caminho de retorno, a repetição encontrada ou sua ausência e o resultado final. Não há impressão do conjunto em toda iteração.
+O main de demonstração contém `{1, 2, 3, 2}`. As impressões mostram o HashSet no caminho de retorno, a repetição encontrada ou sua ausência e o resultado final. Não há impressão do conjunto em toda iteração.
 
 ## Testes
 
@@ -77,59 +77,34 @@ Não existem testes automatizados específicos deste desafio. O SanityCheckTest 
 
 [Índice das evidências](imagens/README.md).
 
-### Teste 01 — Duplicata no final
+<details>
+<summary>Ver evidências visuais dos testes</summary>
 
-- Entrada: `[1, 2, 3, 2]`
-- Resultado esperado: `true`
-- Resultado obtido: `true`
-- Validação: aprovada.
+### Teste 01 — Duplicata no final
 
 ![Teste 01 — Duplicata no final](imagens/teste-01-duplicata-final.png)
 
 ### Teste 02 — Sem duplicata
 
-- Entrada: `[1, 2, 3, 4]`
-- Resultado esperado: `false`
-- Resultado obtido: `false`
-- Validação: aprovada.
-
 ![Teste 02 — Sem duplicata](imagens/teste-02-sem-duplicata.png)
 
 ### Teste 03 — Duplicata consecutiva
-
-- Entrada: `[5, 5, 8, 9]`
-- Resultado esperado: `true`
-- Resultado obtido: `true`
-- Validação: aprovada.
 
 ![Teste 03 — Duplicata consecutiva](imagens/teste-03-duplicata-consecutiva.png)
 
 ### Teste 04 — Número negativo repetido
 
-- Entrada: `[-1, 2, 3, -1]`
-- Resultado esperado: `true`
-- Resultado obtido: `true`
-- Validação: aprovada.
-
 ![Teste 04 — Número negativo repetido](imagens/teste-04-numero-negativo.png)
 
 ### Teste 05 — Elemento único
-
-- Entrada: `[7]`
-- Resultado esperado: `false`
-- Resultado obtido: `false`
-- Validação: aprovada.
 
 ![Teste 05 — Elemento único](imagens/teste-05-elemento-unico.png)
 
 ### Teste 06 — Array vazio
 
-- Entrada: `[]`
-- Resultado esperado: `false`
-- Resultado obtido: `false`
-- Validação: aprovada.
-
 ![Teste 06 — Array vazio](imagens/teste-06-array-vazio.png)
+
+</details>
 
 ## Complexidade
 
@@ -138,11 +113,13 @@ Não existem testes automatizados específicos deste desafio. O SanityCheckTest 
 - **Tempo médio total: `O(n)`.** Até n visitas, com consulta e inserção de custo médio constante por visita.
 - **Espaço adicional: `O(n)`.** Quando todos são diferentes, o conjunto pode guardar os n números.
 
-Essa justificativa acompanha o código; Gabriel ainda fará sua revisão de Big O no nível de entrevista Júnior.
+Essa justificativa acompanha o código. Uma revisão pessoal de Big O pode ser
+feita futuramente, sem bloquear o status técnico do desafio.
 
 ## Explicação Feynman
 
-> Pendente: Gabriel escreverá esta explicação com suas próprias palavras.
+> Revisão pessoal opcional: Gabriel pode registrar uma explicação Feynman com
+> suas próprias palavras.
 
 ## Erros corrigidos e aprendizados
 
@@ -156,9 +133,6 @@ As duas correções de tentativas abaixo foram relatadas por Gabriel no históri
 
 ## Próximas etapas
 
-1. Gabriel realizar a explicação Feynman com as próprias palavras;
-2. Gabriel justificar tempo médio `O(n)` e espaço adicional `O(n)`;
-3. decidir sobre a permanência dos `println` didáticos;
-4. realizar revisão final;
-5. marcar como concluído somente depois dessa validação;
-6. preparar o próximo commit.
+1. avançar para o próximo conteúdo do calendário;
+2. registrar uma explicação Feynman pessoal se isso ajudar a revisão;
+3. decidir sobre a permanência dos `println` didáticos em uma alteração futura.

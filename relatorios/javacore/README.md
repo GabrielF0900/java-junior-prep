@@ -1,6 +1,6 @@
 # Laboratórios de Java Core
 
-[Voltar para a central geral](../README.md)
+[Início](../../README.md) · [Central de estudos](../README.md)
 
 Os laboratórios investigam a linguagem e suas APIs: igualdade, String Pool, hashing e escolha de coleções. A prática deve seguir o [calendário](../../index.html), as [regras pedagógicas](../../AGENTS.md) e o [histórico de estudos](../../HISTORICO_ESTUDOS.md).
 

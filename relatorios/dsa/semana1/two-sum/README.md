@@ -8,9 +8,92 @@
 
 O código executável permanece em src/. As tentativas já presentes no apêndice são registros históricos preservados; nenhuma nova cópia da solução foi adicionada.
 
-## Evidências visuais
+## Evidências dos testes manuais
 
-Ainda não existem prints versionados deste desafio. Consulte as [orientações para inclusão de imagens](imagens/README.md). Os campos pendentes do roteiro abaixo foram preservados; não representam novas execuções nesta migração.
+As evidências estão indexadas também no [README da pasta de imagens](imagens/README.md). Os campos pendentes do roteiro histórico abaixo foram preservados e não foram reescritos retroativamente.
+
+| Nº | Cenário | Entrada | Target | Esperado | Obtido | Evidência |
+| -: | ----------------- | -------------------- | -----: | -------- | -------- | --------- |
+| 1 | Caso comum | `[1, 2, 6, 7, 8, 9]` | `10` | `[1, 4]` | `[1, 4]` | [Ver evidência](imagens/teste-01-caso-comum.png) |
+| 2 | Par no meio | `[4, 2, 6, 10]` | `8` | `[1, 2]` | `[1, 2]` | [Ver evidência](imagens/teste-02-par-no-meio.png) |
+| 3 | Valores repetidos | `[3, 3]` | `6` | `[0, 1]` | `[0, 1]` | [Ver evidência](imagens/teste-03-valores-repetidos.png) |
+| 4 | Números negativos | `[-3, 4, 3, 90]` | `0` | `[0, 2]` | `[0, 2]` | [Ver evidência](imagens/teste-04-numeros-negativos.png) |
+| 5 | Zeros repetidos | `[0, 4, 3, 0]` | `0` | `[0, 3]` | `[0, 3]` | [Ver evidência](imagens/teste-05-zeros-repetidos.png) |
+| 6 | Sem solução | `[1, 2, 3]` | `10` | `[]` | `[]` | [Ver evidência](imagens/teste-06-sem-solucao.png) |
+
+Os seis testes manuais produziram os resultados esperados. Foram validados um
+caso comum, uma resposta formada no meio do array, valores repetidos, números
+negativos, zeros repetidos e um cenário local sem solução.
+
+### Teste 01 — Caso comum
+
+- Entrada: `[1, 2, 6, 7, 8, 9]`
+- Target: `10`
+- Resultado esperado: `[1, 4]`
+- Resultado obtido: `[1, 4]`
+- Valores encontrados: `2 + 8 = 10`
+- Validação: aprovada.
+
+![Teste 01 — Caso comum](imagens/teste-01-caso-comum.png)
+
+### Teste 02 — Par no meio
+
+- Entrada: `[4, 2, 6, 10]`
+- Target: `8`
+- Resultado esperado: `[1, 2]`
+- Resultado obtido: `[1, 2]`
+- Valores encontrados: `nums[1] = 2`, `nums[2] = 6` e `2 + 6 = 8`.
+- Validação: aprovada.
+
+![Teste 02 — Par no meio](imagens/teste-02-par-no-meio.png)
+
+### Teste 03 — Valores repetidos
+
+- Entrada: `[3, 3]`
+- Target: `6`
+- Resultado esperado: `[0, 1]`
+- Resultado obtido: `[0, 1]`
+- Valores encontrados: `nums[0] = 3`, `nums[1] = 3` e `3 + 3 = 6`.
+- Observação: os valores iguais estão em posições diferentes do array.
+- Validação: aprovada.
+
+![Teste 03 — Valores repetidos](imagens/teste-03-valores-repetidos.png)
+
+### Teste 04 — Números negativos
+
+- Entrada: `[-3, 4, 3, 90]`
+- Target: `0`
+- Resultado esperado: `[0, 2]`
+- Resultado obtido: `[0, 2]`
+- Valores encontrados: `nums[0] = -3`, `nums[2] = 3` e `-3 + 3 = 0`.
+- Validação: aprovada.
+
+![Teste 04 — Números negativos](imagens/teste-04-numeros-negativos.png)
+
+### Teste 05 — Zeros repetidos
+
+- Entrada: `[0, 4, 3, 0]`
+- Target: `0`
+- Resultado esperado: `[0, 3]`
+- Resultado obtido: `[0, 3]`
+- Valores encontrados: `nums[0] = 0`, `nums[3] = 0` e `0 + 0 = 0`.
+- Observação: os zeros estão em posições diferentes do array.
+- Validação: aprovada.
+
+![Teste 05 — Zeros repetidos](imagens/teste-05-zeros-repetidos.png)
+
+### Teste 06 — Sem solução
+
+- Entrada: `[1, 2, 3]`
+- Target: `10`
+- Resultado esperado: `[]`
+- Resultado obtido: `[]`
+- Observação: nenhuma combinação produz o target; a implementação retorna um array vazio.
+- Validação: aprovada como teste local adicional de robustez.
+
+![Teste 06 — Sem solução](imagens/teste-06-sem-solucao.png)
+
+O sexto caso não representa uma restrição obrigatória do problema tradicional, que pode garantir a existência de uma solução. Ele documenta o comportamento local da implementação quando nenhuma combinação é encontrada.
 
 ## 0. Enunciado
 

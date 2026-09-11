@@ -8,13 +8,18 @@ public class TwoSum {
 
 
     public static void main(String[] args) {
-        int nums [] = {1,2,6,7,8,9};
-        int target = 10;
+        
+    int[] nums = {1, 2, 3};
+    int target = 10;
 
-         TwoSum desafio = new TwoSum();
-        int[] resultado = desafio.twoSum(nums, target);
+    TwoSum desafio = new TwoSum();
 
-        System.out.println("Resultado: " + Arrays.toString(resultado));
+    System.out.println("Entrada: " + Arrays.toString(nums));
+    System.out.println("Target: " + target);
+
+    int[] resultado = desafio.twoSum(nums, target);
+
+    System.out.println("Resultado: " + Arrays.toString(resultado));
 
     }
 

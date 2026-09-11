@@ -2,18 +2,20 @@
 
 [Voltar ao desafio](../README.md)
 
-Esta pasta receberá prints reais dos testes de Two Sum. Ainda não existem imagens versionadas aqui. Este README mantém a pasta no Git e orienta as futuras inclusões; não representa evidência de execução.
+Esta pasta reúne as evidências reais dos seis testes manuais de Two Sum, conferidas em 11/09/2026.
 
-Não inventar imagens nem criar PNGs vazios. Registrar entrada, target, mensagens relevantes e resultado, sem alterar ou recortar informações importantes do terminal.
+## Padrão utilizado
 
-## Padrão sugerido
+Os arquivos seguem `teste-NN-cenario.png`, com numeração de dois dígitos e cenário em minúsculas separado por hífens.
 
-Use `teste-NN-cenario.png`, com numeração de dois dígitos e cenário em minúsculas separado por hífens. Exemplo de nome futuro: `teste-01-caso-comum.png`. Escolha os cenários a partir das execuções reais, sem presumir que as linhas pendentes do roteiro já foram executadas.
+| Arquivo | Entrada | Target | Resultado obtido | Situação |
+| ------- | ------- | -----: | ---------------- | -------- |
+| [teste-01-caso-comum.png](teste-01-caso-comum.png) | `[1, 2, 6, 7, 8, 9]` | `10` | `[1, 4]` | Incluída e conferida |
+| [teste-02-par-no-meio.png](teste-02-par-no-meio.png) | `[4, 2, 6, 10]` | `8` | `[1, 2]` | Incluída e conferida |
+| [teste-03-valores-repetidos.png](teste-03-valores-repetidos.png) | `[3, 3]` | `6` | `[0, 1]` | Incluída e conferida |
+| [teste-04-numeros-negativos.png](teste-04-numeros-negativos.png) | `[-3, 4, 3, 90]` | `0` | `[0, 2]` | Incluída e conferida |
+| [teste-05-zeros-repetidos.png](teste-05-zeros-repetidos.png) | `[0, 4, 3, 0]` | `0` | `[0, 3]` | Incluída e conferida |
+| [teste-06-sem-solucao.png](teste-06-sem-solucao.png) | `[1, 2, 3]` | `10` | `[]` | Incluída e conferida |
 
-Depois de adicionar o arquivo real, referencie-o no README do desafio com uma legenda. Exemplo de sintaxe, ainda não um link ativo:
-
-```markdown
-![Entrada, target e resultado do teste 01](imagens/teste-01-caso-comum.png)
-```
-
-Somente inserir esse link na seção de evidências quando o arquivo correspondente existir.
+As imagens registram execuções manuais e não substituem testes automatizados
+com JUnit.

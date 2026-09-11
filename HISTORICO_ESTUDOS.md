@@ -230,6 +230,23 @@ Implementação e seis testes manuais concluídos, com evidências visuais.
 Próxima etapa: explicação Feynman, justificativa de Big O, decisão sobre os
 println didáticos e revisão final.
 
+### 11/09/2026 — Inclusão das evidências de Two Sum
+
+As seis evidências de execuções manuais do Two Sum foram encontradas em `relatorios/dsa/semana1/two-sum/imagens/`, inspecionadas individualmente e vinculadas ao README do desafio:
+
+| Entrada | Target | Retorno observado | Validação |
+| --- | ---: | --- | --- |
+| `[1, 2, 6, 7, 8, 9]` | `10` | `[1, 4]` | Aprovado |
+| `[4, 2, 6, 10]` | `8` | `[1, 2]` | Aprovado |
+| `[3, 3]` | `6` | `[0, 1]` | Aprovado |
+| `[-3, 4, 3, 90]` | `0` | `[0, 2]` | Aprovado |
+| `[0, 4, 3, 0]` | `0` | `[0, 3]` | Aprovado |
+| `[1, 2, 3]` | `10` | `[]` | Aprovado como teste local de robustez |
+
+Todos os resultados corresponderam ao esperado. As imagens mostram entrada, target, evolução relevante do HashMap e retorno. O sexto caso complementa a validação local do comportamento `new int[0]` quando não existe combinação, embora o problema tradicional possa garantir uma solução.
+
+O [README do Two Sum](relatorios/dsa/semana1/two-sum/README.md) e o índice da pasta de imagens foram atualizados. As evidências foram adicionadas posteriormente à conclusão informada por Gabriel e complementam a documentação sem reescrever a avaliação pedagógica anterior. A implementação Java e todas as tentativas, respostas e explicações históricas foram preservadas.
+
 O escopo combinado para Big O é: operações de HashSet como `O(1)` em média; percurso do array como `O(n)`; tempo médio total como `O(n)`; espaço adicional como `O(n)`, considerando até n valores distintos. Esses custos descrevem a estratégia implementada, não medições de execução. Os println serão mantidos temporariamente para fins didáticos, conforme decisão informada por Gabriel.
 
 A central hierárquica foi definida e criada em 11/09/2026: [README principal](README.md) → [central geral](relatorios/README.md) → [DSA](relatorios/dsa/README.md) → [Contains Duplicate](relatorios/dsa/semana1/contains-duplicate/README.md). A análise em `docs/ARQUITETURA_ATUAL_REPOSITORIO.md` representa essa estrutura. O código oficial permanece em src/ e os seis prints ficam na subpasta imagens/ do desafio.

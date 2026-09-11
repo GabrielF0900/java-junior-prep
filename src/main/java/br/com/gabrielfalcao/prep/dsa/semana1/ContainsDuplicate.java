@@ -2,16 +2,18 @@ package br.com.gabrielfalcao.prep.dsa.semana1;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Arrays;
 
 public class ContainsDuplicate {
 
     public static void main(String[] args) {
 
         // Entrada utilizada apenas para testar localmente.
-        int[] nums = {1, 2, 3, 2};
+        int[] nums = {};
 
         ContainsDuplicate desafio = new ContainsDuplicate();
         boolean resultado = desafio.containsDuplicate(nums);
+        System.out.println("Entrada: " + Arrays.toString(nums));
 
         System.out.println("Resultado: " + resultado);
     }

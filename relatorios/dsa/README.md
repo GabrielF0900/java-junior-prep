@@ -20,7 +20,7 @@ Calendário: 2.1 — HashMap/HashSet aplicado a problemas e 2.2 — Big O na pr�
 
 O [histórico](../../HISTORICO_ESTUDOS.md) atribui a conclusão de Two Sum à informação de Gabriel em 11/09/2026. Seu roteiro antigo mantém campos pendentes; a migração documental não os preencheu nem simulou uma nova avaliação.
 
-Contains Duplicate tem dois resultados manuais informados por Gabriel e quatro casos pendentes. Ainda não há prints no repositório nem testes automatizados específicos dos desafios.
+Contains Duplicate possui seis casos manuais executados, todos com os resultados esperados, e as seis evidências estão versionadas na pasta individual. O desafio continua **Em validação** porque ainda faltam a explicação Feynman, a justificativa oral de Big O e a revisão final. Não há testes automatizados específicos dos desafios.
 
 ## Semana 4
 

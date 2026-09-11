@@ -1,5 +1,17 @@
 # Two Sum — DSA, semana 1
 
+[Voltar para a central de DSA](../../README.md)
+
+## Acesso ao código-fonte
+
+[Consultar TwoSum.java oficial](../../../../src/main/java/br/com/gabrielfalcao/prep/dsa/semana1/TwoSum.java)
+
+O código executável permanece em src/. As tentativas já presentes no apêndice são registros históricos preservados; nenhuma nova cópia da solução foi adicionada.
+
+## Evidências visuais
+
+Ainda não existem prints versionados deste desafio. Consulte as [orientações para inclusão de imagens](imagens/README.md). Os campos pendentes do roteiro abaixo foram preservados; não representam novas execuções nesta migração.
+
 ## 0. Enunciado
 
 Voce recebe um array de numeros inteiros chamado de num e um numero inteiro chamado target.

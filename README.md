@@ -9,6 +9,14 @@ executar e explicar. Um arquivo existente ou um build bem-sucedido não signific
 que o exercício esteja pedagogicamente concluído. Não criar soluções ou semanas
 antecipadamente.
 
+## Central de documentação
+
+A central reúne desafios resolvidos, exercícios em andamento, documentação individual,
+links para os códigos, testes e evidências, explicações Feynman e análise de
+complexidade. Navegue pelas trilhas e depois pelos desafios.
+
+[📚 Acessar a Central de Estudos e Desafios](relatorios/README.md)
+
 ## Tecnologias e execução
 
 - Java 17; pacote-base `br.com.gabrielfalcao.prep`.
@@ -54,7 +62,7 @@ HTML é independente do build Maven.
   assuntos e as correções conceituais ficam para revisões pedagógicas.
 - Java Core semana 2: `StreamsExemplo.java` permanece reservado, sem implementação.
 - DSA semana 1: `TwoSum.java` preserva a implementação do estudante;
-  `ContainsDuplicate.java` é somente uma classe vazia.
+  `ContainsDuplicate.java` está implementado com HashSet e Em validação, sem conclusão pedagógica.
 - DSA semana 4: `ValidParentheses.java` permanece somente com package e TODO,
   alinhado ao calendário de Stack / Queue.
 - Testes: `SanityCheckTest.java` permanece geral; `SafeWalletServiceTest.java`
@@ -73,6 +81,7 @@ Git, cache, build e IDE não fazem parte deste desenho pedagógico.
 ```text
 java-junior-prep/
 ├── docs/
+│   ├── ARQUITETURA_ATUAL_REPOSITORIO.md
 │   ├── ARQUITETURA_REPOSITORIO_ANTES_DA_REORGANIZACAO.md
 │   └── RELATORIO_REORGANIZACAO.md
 ├── materiais/
@@ -82,10 +91,18 @@ java-junior-prep/
 │           ├── guia-completo-string-pool-java17.html
 │           └── guia-completo-string-pool-java17.pdf
 ├── relatorios/
+│   ├── README.md
 │   ├── dsa/
+│   │   ├── README.md
 │   │   └── semana1/
-│   │       └── two-sum.md
+│   │       ├── two-sum/
+│   │       │   ├── README.md
+│   │       │   └── imagens/README.md
+│   │       └── contains-duplicate/
+│   │           ├── README.md
+│   │           └── imagens/README.md
 │   └── javacore/
+│       ├── README.md
 │       └── semana1/
 │           ├── laboratorio-01-igualdade-referencias.html
 │           └── laboratorio-01-igualdade-referencias.pdf
@@ -144,7 +161,7 @@ java-junior-prep/
 - [Guia de coleções](materiais/javacore/semana1/colecoes_java_pdf.html).
 - [Guia de String Pool](materiais/javacore/semana1/guia-completo-string-pool-java17.html).
 - [Relatório do laboratório 01](relatorios/javacore/semana1/laboratorio-01-igualdade-referencias.html).
-- [Two Sum: roteiro e duas tentativas preservadas](relatorios/dsa/semana1/two-sum.md).
+- [Two Sum: roteiro e duas tentativas preservadas](relatorios/dsa/semana1/two-sum/README.md).
 - [Arquitetura anterior](docs/ARQUITETURA_REPOSITORIO_ANTES_DA_REORGANIZACAO.md).
 - [Relatório da reorganização](docs/RELATORIO_REORGANIZACAO.md).
 - [Histórico de estudos](HISTORICO_ESTUDOS.md).
